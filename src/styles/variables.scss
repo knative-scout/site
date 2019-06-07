@@ -1,0 +1,34 @@
+$ks-color-primary: #820000;
+$ks-color-secondary: #e0e1e2;
+$ks-color-teal: #1cb5ac;
+$ks-color-accent: #ee0000;
+$ks-color-background: #fafbfd;
+$ks-color-rule: #eaeaea;
+$ks-color-text-light: #999999;
+$ks-color-text-body: #515151;
+$ks-color-text-panel: #464646;
+$ks-color-text-primary: #1b1c1d;
+$ks-color-text-metadata: #b6b6b6;
+
+$ks-color-card-background: rgba(3,3,3,.32);
+
+$ks-code-font-family: "Source Code Pro";
+
+$page-bg-color: $ks-color-background;
+$ks-header-height: 185px;
+$ks-footer-height: 349px;
+$ks-header-footer-height: calc(#{$ks-header-height} + #{$ks-footer-height});
+$ks-list-item-height: 100px;
+$ks-filters-width: 220px;
+$ks-card-width: 300px;
+
+$ks-extra-tile-space: 35px; // 15px padding + 20px margin between filters and tiles
+$ks-window-space: calc(#{$ks-extra-tile-space} + 30px); // 15px padding on each side
+
+$ks-width-3-tile-min: calc((3 * #{$ks-card-width}) + #{$ks-filters-width} + #{$ks-window-space});
+$ks-width-4-tile-min: calc((4 * #{$ks-card-width}) + #{$ks-filters-width} + #{$ks-window-space} + 30px); // at 4-5 tiles, increase padding on each side by 15px
+$ks-width-5-tile-min: calc((5 * #{$ks-card-width}) + #{$ks-filters-width} + #{$ks-window-space} + 30px);
+$ks-content-width-3-tiles: calc((3 * #{$ks-card-width}) + #{$ks-filters-width} + #{$ks-extra-tile-space});
+$ks-content-width-4-tiles: calc((4 * #{$ks-card-width}) + #{$ks-filters-width} + #{$ks-extra-tile-space});
+$ks-content-width-5-tiles: calc((5 * #{$ks-card-width}) + #{$ks-filters-width} + #{$ks-extra-tile-space});
+
