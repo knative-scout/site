@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { Preview } from './pages/Preview';
 import { Switch, Route, Router } from 'react-router';
 import { createBrowserHistory } from 'history';
+import { AppGrid } from './components/AppGrid';
 
 const App: React.FC = () => {
 
@@ -22,6 +23,8 @@ const App: React.FC = () => {
         <Route path="/preview/:appid" component={Preview}></Route>
       </Switch>
     </Router>
+
+    <AppGrid></AppGrid>
     </div>
   );
 }

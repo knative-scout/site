@@ -19,3 +19,21 @@ export function useAppById(appID : string) {
 
     return appById;
 }
+
+export function useAppList() {
+
+    const[appList,setAppList] = useState([]);
+
+    useEffect(
+        function handleAppListFetch(){
+            fetch(baseurl + '/apps')
+                .then( response =>
+                    response.json()
+                        .then( data =>
+                            setAppList(data.apps)
+                        )
+                )
+    });
+    
+    return appList;
+}
