@@ -20,13 +20,15 @@ export function useAppById(appID : string) {
     return appById;
 }
 
-export function useAppList() {
+export function useAppList(query?: string) {
 
     const[appList,setAppList] = useState([]);
 
+    const squery = query ? '?query=' + query : '';
+
     useEffect(
         function handleAppListFetch(){
-            fetch(baseurl + '/apps')
+            fetch(baseurl + '/apps' + squery)
                 .then( response =>
                     response.json()
                         .then( data =>
