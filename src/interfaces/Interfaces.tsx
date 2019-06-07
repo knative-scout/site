@@ -8,10 +8,6 @@ export default interface ServerlessApp {
     description: string;
     tags: string[];
     maintainer: string;
-    links: {
-        name: string;
-        url: string;
-    }[]
     categories: string[];
     verification_status: string[];
     github_url: string;
