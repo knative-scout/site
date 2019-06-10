@@ -27,9 +27,6 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
 
     const[appList,setAppList] = useState([]);
 
-
-
-
     useEffect(
         function handleAppListFetch(){
             const squery = '?query=' + query;
@@ -47,4 +44,47 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     },[query,tags,categories]);
     
     return appList;
+}
+
+export function useCategoryList(query:string) {
+
+    const[categoryList,setCategoryList] = useState([]);
+
+    useEffect(
+        function handleAppListFetch(){
+            const squery = '?query=' + query;
+            var request = baseurl + '/apps/categories' + squery;
+
+            fetch(request)
+                .then( response =>
+                    response.json()
+                        .then( data =>
+                            setCategoryList(data.categories)
+                        )
+                )
+    },[query]);
+    
+    return categoryList;
+}
+
+
+export function useTagList(query:string) {
+
+    const[tagList,setTagList] = useState([]);
+
+    useEffect(
+        function handleAppListFetch(){
+            const squery = '?query=' + query;
+            var request = baseurl + '/apps/tags' + squery;
+
+            fetch(request)
+                .then( response =>
+                    response.json()
+                        .then( data =>
+                            setTagList(data.categories)
+                        )
+                )
+    },[query]);
+    
+    return tagList;
 }
