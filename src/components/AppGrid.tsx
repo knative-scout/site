@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { useAppList } from '../hooks/Hooks';
 import { AppTile } from './AppTile';
 import { EmptyState } from '@patternfly/react-core';
+import ServerlessApp from '../interfaces/Interfaces';
 
-export function AppGrid(props : {}) {
-
-    const appList = useAppList();
+export function AppGrid(props : { appList : ServerlessApp[]}) {
 
     return(
         <div>{
-            appList == null ? empty :
-            appList.map( app => {
+            props.appList == null ? empty :
+            props.appList.map( app => {
                 return (<AppTile app={app}></AppTile>);
             })}
         </div>

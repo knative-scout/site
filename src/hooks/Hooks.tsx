@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import { PrintArray } from '../utils/Utils';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 const baseurl = "https://api.kscout.io"
 
@@ -15,27 +17,34 @@ export function useAppById(appID : string) {
                             setAppById(data.app)
                         )
                 )
-    });
+    }, [appID]);
 
     return appById;
 }
 
-export function useAppList(query?: string) {
+
+export function useAppList(query:string, tags:string[], categories:string[]) {
 
     const[appList,setAppList] = useState([]);
 
-    const squery = query ? '?query=' + query : '';
+
+
 
     useEffect(
         function handleAppListFetch(){
-            fetch(baseurl + '/apps' + squery)
+            const squery = '?query=' + query;
+            const stags = tags != undefined ? "&tags=" + PrintArray(tags,',') : '';
+            const scats = categories != undefined ? "&categories=" + PrintArray(categories,",") : '';
+            var request = baseurl + '/apps' + squery + stags + scats;
+
+            fetch(request)
                 .then( response =>
                     response.json()
                         .then( data =>
                             setAppList(data.apps)
                         )
                 )
-    });
+    },[query,tags,categories]);
     
     return appList;
 }
