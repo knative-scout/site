@@ -8,7 +8,7 @@ export function AppGrid(props : { appList : ServerlessApp[]}) {
 
     return(
         <div>{
-            props.appList == null ? empty :
+            props.appList == null || props.appList.length == 0? empty :
             props.appList.map( app => {
                 return (<AppTile app={app}></AppTile>);
             })}
