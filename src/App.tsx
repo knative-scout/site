@@ -15,8 +15,6 @@ const App: React.FC = (props) => {
 
 
   return (
-    <div className="App">
-
     <Router history={history}>
     <Switch>
         <Route path="/" component={AppHub}></Route>
@@ -28,7 +26,6 @@ const App: React.FC = (props) => {
         <Route path="/apps/:appid" component={AppDetails}></Route>
       </Switch>
     </Router>
-    </div>
   );
 }
 

@@ -74,7 +74,7 @@ export function AppHub(props : {}) {
     } 
 
     const sections = [
-        {component: AppHubHeader, isFilled: false},
+        {component: AppHubHeader, isFilled: false, noPadding: true},
         {component: <AppHubMain/>, isFilled: true}
     ]
 

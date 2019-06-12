@@ -23,7 +23,7 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         >
             {props.components.map(c => {
             return (
-                <PageSection isFilled={c.isFilled} children={c.component}/>
+                <PageSection isFilled={c.isFilled} noPadding={c.noPadding} children={c.component}/>
             )})}
             
     
