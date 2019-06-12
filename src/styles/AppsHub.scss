@@ -71,6 +71,7 @@
 
   &-sidebar {
     background-color: white;
+    margin-right: 50px;
 
     &__label {
       font-weight: bold;
@@ -113,3 +114,8 @@
   }
 }
   
+
+.ks-app-details {
+  display: flex;
+  flex-direction: row;
+}
