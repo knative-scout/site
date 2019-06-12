@@ -1,30 +1,33 @@
-import React from 'react';
+import React, { FunctionComponent, Component } from 'react';
 import logo from './logo.svg';
 import { Preview } from './pages/Preview';
 import { Switch, Route, Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { AppGrid } from './components/AppGrid';
+import { AppDetails } from './pages/AppDetails';
+import { AppHub } from './pages/AppHub';
+import { KSPage } from './pages/KSPage';
+import { AppHubSidebar } from './components/AppHubSidebar';
 
-const App: React.FC = () => {
+const App: React.FC = (props) => {
 
   const history = createBrowserHistory();
 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>KScout.io In Development</h1>
-        <p>KScout.io is a smart hub for serverless kubernetes applications.
-          you can find the repository to follow along with or contribute to development <a href='https://github.com/knative-scout/kscout.io'>on GitHub</a>
-        </p>
-      </header>
 
     <Router history={history}>
+    <Switch>
+        <Route path="/" component={AppHub}></Route>
+      </Switch>
       <Switch>
         <Route path="/preview/:appid" component={Preview}></Route>
       </Switch>
+      <Switch>
+        <Route path="/apps/:appid" component={AppDetails}></Route>
+      </Switch>
     </Router>
-
-    <AppGrid></AppGrid>
     </div>
   );
 }

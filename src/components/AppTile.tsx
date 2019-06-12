@@ -9,7 +9,7 @@ interface IProps {
 
 function getTagStrings(tags : string[]) {
     return (tags.map((tag : string)=> (
-      <Label className="ks-card__footer__tag">
+      <Label key={tag} className="ks-card__footer__tag">
         {tag}
       </Label>
     )))

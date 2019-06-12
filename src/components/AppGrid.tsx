@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
 import { useAppList } from '../hooks/Hooks';
 import { AppTile } from './AppTile';
-import { EmptyState } from '@patternfly/react-core';
+import { EmptyState, Grid, GridItem, Gallery, GalleryItem } from '@patternfly/react-core';
 import ServerlessApp from '../interfaces/Interfaces';
 
-export function AppGrid(props : { appList : ServerlessApp[]}) {
+interface AGProps {
+    appList : ServerlessApp[]
+}
+
+
+export const AppGrid : React.FC<AGProps> = (props) => {
 
     return(
-        <div>{
-            props.appList == null || props.appList.length == 0? empty :
-            props.appList.map( app => {
-                return (<AppTile app={app}></AppTile>);
-            })}
-        </div>
+        <Grid sm={2} md={4} lg={6} gutter="md">
+            {props.appList == null || props.appList.length == 0? empty :
+                props.appList.map( app => {
+                    return (
+                        <GridItem>
+                            <AppTile key={app.app_id} app={app}></AppTile>
+                        </GridItem>
+                    );
+                })}
+        </Grid>
     );
 }
 
-function empty() {
-    return (
+const empty = (
         <EmptyState>
             <p>No Apps Found</p>
         </EmptyState>
-    )
-}
+);

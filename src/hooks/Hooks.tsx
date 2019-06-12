@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { PrintArray } from '../utils/Utils';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 const baseurl = "https://api.kscout.io"
 
@@ -81,7 +80,7 @@ export function useTagList(query:string) {
                 .then( response =>
                     response.json()
                         .then( data =>
-                            setTagList(data.categories)
+                            setTagList(data.tags)
                         )
                 )
     },[query]);

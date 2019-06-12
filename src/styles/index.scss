@@ -1,10 +1,15 @@
 body {
+  background-color: $page-bg-color;
+  color: #363636;
+  font-family: "Lato", var(--pf-global--FontFamily--sans-serif);
+  line-height: 1.66667;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  --pf-l-gallery--GridTemplateColumns: auto;
+
 }
 
 code {
