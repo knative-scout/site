@@ -40,7 +40,7 @@ export function AppHub(props : {}) {
     const AppHubHeader = (
         <div className="ks-apphub-header">
             <div className="ks-apphub-header__search">
-                <label htmlFor="apphub-search">Search Serverless Apps</label>
+                <label htmlFor="apphub-search">Search Serverless Apps </label>
                 <input id="apphub-search" 
                 placeholder="Search KScout..." 
                 onChange={handleSearchChange}></input>
@@ -68,7 +68,7 @@ export function AppHub(props : {}) {
                     <AppHubSidebar tags={tagList} selectedTags={tags} categories={categoryList} selectedCategories={categories}
                     onCategorySelect={categoryHandlerFunctor} onTagClear={handleTagClear} onTagSelect={handleTagSelect}/>
 
-                    <AppGrid appList={apps}/>
+                    <AppGrid appList={apps} tagHook={handleTagSelect}/>
                 </div>
         );
     } 

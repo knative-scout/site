@@ -4,12 +4,17 @@ import { Card, CardHeader, CardFooter, CardBody, Label } from '@patternfly/react
 
 interface IProps {
     app: ServerlessApp
+    tagHook?: any
 }
 
 
-function getTagStrings(tags : string[]) {
+function getTagStrings(tags : string[], tagHook?: any) {
+
+    function handleClickFunctor(key : string){
+      return ((e : any) => tagHook(e,key));
+    }
     return (tags.map((tag : string)=> (
-      <Label key={tag} className="ks-card__footer__tag">
+      <Label key={tag} className="ks-card__footer__tag" onClick={handleClickFunctor(tag)}>
         {tag}
       </Label>
     )))
@@ -19,7 +24,7 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
 
     const {name, author, logo_url, tagline, tags} = props.app
 
-    const tagStrings = tags ? getTagStrings(tags) : null;
+    const tagStrings = tags ? getTagStrings(tags,props.tagHook) : null;
 
 
     return (

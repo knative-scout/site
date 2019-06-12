@@ -5,7 +5,8 @@ import { EmptyState, Grid, GridItem, Gallery, GalleryItem } from '@patternfly/re
 import ServerlessApp from '../interfaces/Interfaces';
 
 interface AGProps {
-    appList : ServerlessApp[]
+    appList : ServerlessApp[],
+    tagHook?: any
 }
 
 
@@ -17,7 +18,7 @@ export const AppGrid : React.FC<AGProps> = (props) => {
                 props.appList.map( app => {
                     return (
                         <GridItem>
-                            <AppTile key={app.app_id} app={app}></AppTile>
+                            <AppTile key={app.app_id} app={app} tagHook={props.tagHook}></AppTile>
                         </GridItem>
                     );
                 })}
