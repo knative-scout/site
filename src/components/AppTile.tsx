@@ -22,7 +22,7 @@ function getTagStrings(tags : string[], tagHook?: any) {
 
 export const AppTile : React.FC<IProps> = (props : IProps) => {
 
-    const {name, author, logo_url, tagline, tags} = props.app
+    const {app_id, name, author, logo_url, tagline, tags} = props.app
 
     const tagStrings = tags ? getTagStrings(tags,props.tagHook) : null;
 
@@ -31,7 +31,7 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
         <Card className="ks-card">
         <CardHeader className="ks-card__heading">
           <div className="ks-card__heading__left">
-            <span className="ks-card__heading__left__title">{name}</span>
+            <a href={'/apps/' + app_id} className="ks-card__heading__left__title">{name}</a>
             <span className="ks-card__heading__left__provider">{author}</span>
           </div>
           <img className="ks-card__heading__logo" alt={name} src={logo_url} />

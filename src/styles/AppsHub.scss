@@ -23,6 +23,7 @@
       &__title {
         font-weight: bold;
         font-size: 150%;
+        color: black;
       }
   
     }
@@ -112,10 +113,4 @@
       width: 100%;
     }
   }
-}
-  
-
-.ks-app-details {
-  display: flex;
-  flex-direction: row;
 }
