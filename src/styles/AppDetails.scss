@@ -1,0 +1,33 @@
+.ks-appdetails {
+    display: flex;
+    flex-direction: row;
+    
+    img {
+        width: 300px;
+        border: 2pt black solid;
+    }
+
+
+    &__sidebar {
+        width: 30%;
+        background-color: #b2b2b2;
+        margin-right: 30px;
+
+
+        &__stackitem {
+            &__label{
+                font-size: 115%;
+                font-style: italic;
+                font-weight: bold;
+                display: block;
+            }
+
+            &__content {
+                display: block;
+            }
+
+        }
+    }
+
+
+}
