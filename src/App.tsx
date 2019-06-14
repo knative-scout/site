@@ -8,6 +8,7 @@ import { AppHub } from './pages/AppHub';
 import { KSPage } from './pages/KSPage';
 import { AppDetails } from './pages/AppDetails';
 import { AppHubSidebar } from './components/AppHubSidebar';
+import {Main} from './pages/Main';
 
 const App: React.FC = (props) => {
 
@@ -17,7 +18,10 @@ const App: React.FC = (props) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={AppHub}></Route>
+        <Route path="/" exact component={Main}></Route>
+      </Switch>
+      <Switch>
+        <Route path="/apps" exact component={AppHub}></Route>
       </Switch>
       <Switch>
         <Route path="/apps/:appid" component={AppDetails}></Route>

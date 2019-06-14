@@ -1,6 +1,9 @@
 .ks-appdetails {
     display: flex;
     flex-direction: row;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
     
     img {
         width: 300px;
@@ -12,6 +15,7 @@
         width: 30%;
         background-color: #b2b2b2;
         margin-right: 30px;
+        overflow-wrap: initial;
 
 
         &__stackitem {
@@ -24,6 +28,7 @@
 
             &__content {
                 display: block;
+                overflow-wrap: break-word;
             }
 
         }

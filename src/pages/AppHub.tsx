@@ -4,6 +4,7 @@ import {AppGrid} from '../components/AppGrid'
 import {AppHubSidebar} from '../components/AppHubSidebar'
 import { Grid, GridItem } from '@patternfly/react-core';
 import { KSPage } from './KSPage';
+import searchicon from '../imgs/Interface_icon_search_magnifying_glass_white.png';
 
 
 export function AppHub(props : {}) {
@@ -38,12 +39,15 @@ export function AppHub(props : {}) {
     }
 
     const AppHubHeader = (
-        <div className="ks-apphub-header">
+        <div className="ks-apphub-header ks-header">
             <div className="ks-apphub-header__search">
-                <label htmlFor="apphub-search">Search Serverless Apps </label>
-                <input id="apphub-search" 
-                placeholder="Search KScout..." 
-                onChange={handleSearchChange}></input>
+                <label htmlFor="apphub-search">Discover and Share Serverless Apps</label>
+                <span className='ks-apphub-header__search__input'>
+                    <img src={searchicon} alt=""></img>
+                    <input className="" id="apphub-search" 
+                    placeholder="Search KScout..." 
+                    onChange={handleSearchChange}></input>
+                </span>
             </div>
         </div>
     );
