@@ -18,7 +18,7 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
     );
 
     const Footer = (
-        <PageSection className="ks-footer" variant="dark">
+        <PageSection isFilled={false} className="ks-footer" variant="dark">
             <div className="ks-footer-content">
                 KScout.io is a smart hub for serverless applications, currently
                 in development by a team of Red Hat interns.
