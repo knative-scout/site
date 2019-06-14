@@ -8,13 +8,16 @@ interface KSPProps { components : any[], sidebar?: any};
 export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
 
     const logo = (
-        <Brand src={Scout_Cloud2} alt="kscout.io"></Brand>
+        <a href="/">
+            <Brand src={Scout_Cloud2} alt="kscout.io"></Brand>
+        </a>
     )
 
     const Header =  (
             <PageHeader className="ks-topbar" logo={logo}/>
     );
 
+    
 
 
     return (

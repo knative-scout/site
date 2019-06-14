@@ -23,7 +23,7 @@ export function AppHubSidebar(props: {categories: string[], selectedCategories :
 
 function CategorySelect(props: {categories :string[], selected : string[], onChange : (key : string)  => ((event : any) => any) }){
 
-    return (<div>
+    return (<div className="ks-apphub-sidebar__catselect">
         {(props.categories.map( category => {
             return (
                 <Checkbox
