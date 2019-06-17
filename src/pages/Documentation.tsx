@@ -48,7 +48,7 @@ const Documentation : React.FC<DocProps> = (props : DocProps) => {
     );
 
     const pageSections = 
-        (props.sections.map(toDocSection)).map((section) => wrapSection(section, {isFilled: true, noPadding: false}))
+        (props.sections.map(toDocSection)).map((section) => wrapSection(section, {isFilled: false, noPadding: false})).concat([{component: undefined, isFilled: true, noPadding: true}])
 
     return (
         <KSPage components={pageSections} sidebar={navBar}/>
