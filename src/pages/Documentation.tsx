@@ -57,17 +57,18 @@ const Documentation : React.FC<DocProps> = (props : DocProps) => {
 
 const LMSections = [
     {
-        title: "Lorem Ipsum",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ullamcorper lobortis mi at commodo. Nulla pulvinar aliquam augue, quis congue mi euismod porta. Donec lobortis orci est, ac malesuada lacus molestie a. Aliquam erat volutpat. Suspendisse varius purus quam, in efficitur elit gravida at. Vivamus vel nibh sed neque viverra faucibus. Fusce congue nisi at felis interdum, a feugiat magna vehicula. Fusce auctor pretium odio. Maecenas maximus eros mauris, ut luctus tellus porta posuere. Nam mi tellus, laoreet in malesuada ut, suscipit tempor arcu. Nunc vehicula felis nec risus consectetur vulputate. Donec ante nulla, rhoncus pellentesque ligula sit amet, pretium rutrum leo."
+        title: 'What is KScout.io?',
+        text: 'KScout.io is a Smart Hub for Knative Serverless Apps. You can use this site to learn about serverless and knative architecture, explore example serverless apps developed by community contributors, and deploy them to your own clusters.'
     },
     {
-        title: "Lorem Ipsum 2",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ullamcorper lobortis mi at commodo. Nulla pulvinar aliquam augue, quis congue mi euismod porta. Donec lobortis orci est, ac malesuada lacus molestie a. Aliquam erat volutpat. Suspendisse varius purus quam, in efficitur elit gravida at. Vivamus vel nibh sed neque viverra faucibus. Fusce congue nisi at felis interdum, a feugiat magna vehicula. Fusce auctor pretium odio. Maecenas maximus eros mauris, ut luctus tellus porta posuere. Nam mi tellus, laoreet in malesuada ut, suscipit tempor arcu. Nunc vehicula felis nec risus consectetur vulputate. Donec ante nulla, rhoncus pellentesque ligula sit amet, pretium rutrum leo."
-    },
+        title: 'Why use the hub?',
+        text: 'The hub of serverless apps provides a central resource for open source knative apps. Explore apps, deploy them to see what they do, then study their source code and documentation to see how they work. Reuse code for your own serverless projects, or simply use them as resources to figure out how to use particular apis or implement certain features. Use the hub to start working with Knative Serverless apps as quickly and easily as possible.'
+    }, 
     {
-        title: "Lorem Ipsum 3",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ullamcorper lobortis mi at commodo. Nulla pulvinar aliquam augue, quis congue mi euismod porta. Donec lobortis orci est, ac malesuada lacus molestie a. Aliquam erat volutpat. Suspendisse varius purus quam, in efficitur elit gravida at. Vivamus vel nibh sed neque viverra faucibus. Fusce congue nisi at felis interdum, a feugiat magna vehicula. Fusce auctor pretium odio. Maecenas maximus eros mauris, ut luctus tellus porta posuere. Nam mi tellus, laoreet in malesuada ut, suscipit tempor arcu. Nunc vehicula felis nec risus consectetur vulputate. Donec ante nulla, rhoncus pellentesque ligula sit amet, pretium rutrum leo."
-    },
+        title: 'What is Serverless?',
+        text: 'Serverless architectures are application designs that incorporate third-party service, known as Backend-as- a-service or include custom code run in managed, ephemeral containers, known as Function-as-a-service. Read more: https://martinfowler.com/articles/serverless.html'
+
+    }
 ]
 
 export const LearnMore = (props : {}) => {
