@@ -1,5 +1,5 @@
 import React from 'react';
-import {Title, PageSection} from '@patternfly/react-core';
+import {Title, PageSection, Nav, NavList, NavItem} from '@patternfly/react-core';
 import {KSPage, wrapSection} from './KSPage';
 
 /**
@@ -21,7 +21,7 @@ interface DocProps {
 const toDocSection = (section : DocSection) => {
     return (
         <PageSection key={section.title} className="ks-docpage__section">
-            <Title className="ks-docpage__section__title" size="2xl">{section.title}</Title>
+            <Title id={section.title} className="ks-docpage__section__title" size="2xl">{section.title}</Title>
             <div className="ks-docpage__section__text">
                 {section.text}
             </div>
@@ -34,11 +34,24 @@ const toDocSection = (section : DocSection) => {
  */
 const Documentation : React.FC<DocProps> = (props : DocProps) => {
 
+    const navBar = (
+        <Nav className="ks-docpage__nav">
+            <NavList className="ks-docpage__nav__list">{
+                (props.sections.map(section => 
+                    {return(
+                        <NavItem className="ks-docpage__nav__item" to={'#' + section.title}>
+                            {section.title}
+                        </NavItem>);
+                    }))}
+            </NavList>
+        </Nav>
+    );
+
     const pageSections = 
-        (props.sections.map(toDocSection)).map((section) => wrapSection(section, {isFilled: true, noPadding: false}));
+        (props.sections.map(toDocSection)).map((section) => wrapSection(section, {isFilled: true, noPadding: false}))
 
     return (
-        <KSPage components={pageSections}/>
+        <KSPage components={pageSections} sidebar={navBar}/>
     );
 }
 
