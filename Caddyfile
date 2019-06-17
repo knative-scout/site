@@ -1,4 +1,8 @@
 http://* {
   root /app/build
   tls off
+
+  rewrite /apps {
+    to /
+  }
 }
