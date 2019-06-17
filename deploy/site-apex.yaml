@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-site-apex
+  labels:
+    app: site-apex
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: site-apex
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: site-apex
+        env: prod
+    spec:
+      containers:
+        - name: nginx
+          image: docker.io/kscout/site-apex:latest
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProb:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-site-apex
+  labels:
+    app: site-apex
+    env: prod
+spec:
+  selector:
+    app: site-apex
+    env: prod
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http
+      name: http
+---          
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: prod-site-apex
+  labels:
+    app: site-apex
+    env: prod
+spec:
+  host: kscout.io
+  path: /
+  to:
+    kind: Service
+    name: prod-site-apex
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+status:
+  ingress:
+    - host: kscout.io

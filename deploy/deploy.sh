@@ -96,6 +96,12 @@ if ! oc process "$app" "${template_parameters[@]}" | oc apply --filename -; then
     die "Failed to deploy process resources"
 fi
 
+if [[ "$env" == "prod" ]]; then
+    if ! oc apply --filename "$prog_dir/site-apex.yaml"; then
+	die "Failed to deploy apex redirect resources"
+    fi
+fi
+
 # Rollout
 if [ -n "$do_rollout" ]; then
     bold "Triggering rollout"
@@ -106,6 +112,12 @@ if [ -n "$do_rollout" ]; then
 
     if ! oc rollout status "dc/$dc_name"; then
 	die "Failed to wait for rollout to complete"
+    fi
+
+    if [[ "$env" == "prod" ]]; then
+	if ! kubectl rollout status "deployment/prod-site-apex"; then
+	    die "Failed to wait for rollout of apex deployment to complete"
+	fi
     fi
 fi
 
