@@ -1,0 +1,117 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: site
+  labels:
+    app: site
+spec:
+  dockerImageRepository: docker.io/kscout/site
+  tags:
+    - from:
+        kind: DockerImage
+        name: docker.io/kscout/site:prod-latest
+      name: prod-latest
+      importPolicy:
+        scheduled: true
+    - from:
+        kind: DockerImage
+        name: docker.io/kscout/site:staging-latest
+      name: staging-latest
+      importPolicy:
+        scheduled: true
+
+---
+apiVersion: v1
+kind: Template
+metadata:
+  name: site
+  annotations:
+    description: KScout website
+parameters:
+  - name: ENV
+    description: Deployment environment
+    required: True
+  - name: HOST
+    description: Host from which service can be accessed
+    required: True
+objects:    
+  - apiVersion: apps.openshift.io/v1
+    kind: DeploymentConfig
+    metadata:
+      name: ${ENV}-site
+      labels:
+        app: site
+        env: ${ENV}
+    spec:
+      replicas: 1
+      selector:
+        app: site
+        env: ${ENV}
+      triggers:
+        - type: ImageChange
+          imageChangeParams:
+            containerNames:
+              - site
+            from:
+              kind: ImageStreamTag
+              name: site:${ENV}-latest
+      template:
+        metadata:
+          labels:
+            app: site
+            env: ${ENV}
+        spec:
+          containers:
+            - name: site
+              image: kscout/site:${ENV}-latest
+              ports:
+                - name: http
+                  containerPort: 80
+                  protocol: TCP
+              livenessProbe:
+                httpGet:
+                  path: /
+                  port: http
+                  scheme: HTTP
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: http
+                  scheme: HTTP
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: ${ENV}-site
+      labels:
+        app: site
+        env: ${ENV}
+    spec:
+      selector:
+        app: site
+        env: ${ENV}
+      ports:
+        - protocol: TCP
+          port: 80
+          targetPort: http
+          name: http
+  - apiVersion: route.openshift.io/v1
+    kind: Route
+    metadata:
+      name: ${ENV}-site
+      labels:
+        app: site
+        env: ${ENV}
+    spec:
+      host: ${HOST}
+      path: /
+      to:
+        kind: Service
+        name: ${ENV}-site
+        weight: 100
+      port:
+        targetPort: http
+      tls:
+        termination: edge
+    status:
+      ingress:
+        - host: ${HOST}
