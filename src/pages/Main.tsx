@@ -18,7 +18,7 @@ const MainTop = (
                     <Button component="a" href="/apps">Explore Apps</Button>
                 </LevelItem>
                 <LevelItem>
-                    <Button component="a" href="/">Learn More</Button>
+                    <Button component="a" href="/learn">Learn More</Button>
                 </LevelItem>
             </Level>
         </div>
@@ -33,7 +33,7 @@ const MainMid = (
         <div className="ks-main__mid__info">
             <div className="ks-main__mid__info__sec">
                 <Title className="ks-main__mid__info__sec__title" size="xl">Want to get started with serverless architecture?</Title>
-                <div className="ks-main__mid__info__sec__content"><a href="/">Our documentation</a> has everything you need to get started writing and deploying your own serverless apps.</div>
+                <div className="ks-main__mid__info__sec__content"><a href="/learn">Our documentation</a> has everything you need to get started writing and deploying your own serverless apps.</div>
             </div>
             <div className="ks-main__mid__info__sec">
                 <Title className="ks-main__mid__info__sec__title" size="xl">Want to explore serverless apps written by others?</Title> 

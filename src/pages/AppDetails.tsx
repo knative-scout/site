@@ -9,10 +9,15 @@ import { tsPropertySignature } from '@babel/types';
 
 interface ADProps {appid ?: string, match ?: any}
 
+/**
+ * App Details Page
+ * @param props.appid app to pull from api and render info of
+ * @param props.match provides access to url to pull appid if not provided in params
+ */
 export const AppDetails : React.FC<ADProps> =  (props : ADProps) => { 
 
-        const { appid }= props.appid ? props.appid : props.match.params
-        const app = useAppById(appid);
+    const { appid }= props.appid ? props.appid : props.match.params
+    const app = useAppById(appid);
 
     const AppDetailsSection  = (
 

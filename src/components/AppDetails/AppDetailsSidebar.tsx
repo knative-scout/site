@@ -3,6 +3,10 @@ import ServerlessApp from '../../interfaces/Interfaces';
 import { Stack, StackItem } from '@patternfly/react-core';
 import {Map2} from '../../utils/Utils';
 
+
+/**
+ * Sidebar for App Details page
+ */
 export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 
     const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app;

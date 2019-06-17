@@ -1,3 +1,6 @@
+/**
+ * Type representing all info of a single serverless app.
+ */
 export default interface ServerlessApp {
     app_id: string;
     name: string;

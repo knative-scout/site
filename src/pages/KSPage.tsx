@@ -2,9 +2,34 @@ import React, { Component, FunctionComponent } from 'react';
 import { Brand, Page, PageHeader, PageSection} from '@patternfly/react-core';
 import Scout_Cloud2 from '../imgs/Scout_Cloud2.png';
 
-interface KSPProps { components : any[], sidebar?: any};
+
+interface KSPProps { components : KSPSection[], sidebar?: any};
 
 
+interface KSPSection {
+    component : any,
+    isFilled ?: boolean,
+    noPadding ?: boolean
+}
+
+/**
+ * Util function to transform <PageSection> object to correctly formatted KSPSection objects
+ * @param section 
+ * @param props 
+ */
+export const wrapSection  = (section : any, props?: {isFilled ?: boolean, noPadding ?: boolean}) => {
+    return {
+        component: section,
+        isFilled: props ? props.isFilled : false,
+        noPadding : props? props.noPadding : false
+    }
+}
+
+/**
+ * Wrapper for single page of KScout.io
+ * @param props.components array of KSPSection objects to render within main section of page
+ * @param props.sidebar content to render within page sidebar
+ */
 export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
 
     const logo = (

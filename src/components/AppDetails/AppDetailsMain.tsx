@@ -3,6 +3,11 @@ import ServerlessApp from '../../interfaces/Interfaces';
 import { Gallery, GalleryItem } from '@patternfly/react-core';
 import Markdown from 'react-markdown';
 
+
+/**
+ * Main 
+ * @param props.app ServerlessApp object  of app details to render
+ */
 export function AppDetailsMain (props : { app : ServerlessApp }) {
 
     const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app
@@ -28,6 +33,9 @@ function imageGalleryItems(screenshots_urls : string[], name : string){
     );
 }
 
+/**
+ * Gallery for app screenshots
+ */
 function imageGallery(screenshots_urls : string[] , name : string){
     return screenshots_urls ? 
         <Gallery gutter="md">
