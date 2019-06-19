@@ -8,6 +8,9 @@
   &:hover, &:focus {
     box-shadow: 0 6px 12px rgba(0,0,0,0.12)
   }
+
+  margin-right: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-flow: column;
   &__heading {
@@ -157,4 +160,9 @@
       width: 100%;
     }
   }
+}
+
+.ks-appgrid {
+  display: flex;
+  flex-wrap: wrap;
 }
