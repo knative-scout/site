@@ -103,3 +103,23 @@ export function useTagList(query:string) {
     
     return tagList;
 }
+
+
+export function useDeployInstructions(appID : string) {
+
+    const [deployInstructions,setDeployInstructions] = useState('Loading...');
+
+    useEffect(
+        function handleAppFetch(){
+            fetch(baseurl + '/apps/id/' + appID + '/deployment-instructions')
+                .then( response =>
+                    response.json()
+                        .then( data =>
+                            setDeployInstructions(data.instructions)
+                        )
+                )
+    }, [appID]);
+
+    return deployInstructions;
+
+}
