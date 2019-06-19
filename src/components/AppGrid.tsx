@@ -9,7 +9,9 @@ interface AGProps {
     tagHook?: any
 }
 
-
+/**
+ * Grid for displaying cards representing Serverless Apps on /apps page
+ */
 export const AppGrid : React.FC<AGProps> = (props) => {
 
     return(

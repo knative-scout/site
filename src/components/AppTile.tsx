@@ -2,6 +2,7 @@ import React from 'react';
 import ServerlessApp from '../interfaces/Interfaces';
 import { Card, CardHeader, CardFooter, CardBody, Label } from '@patternfly/react-core';
 
+
 interface IProps {
     app: ServerlessApp
     tagHook?: any
@@ -20,6 +21,11 @@ function getTagStrings(tags : string[], tagHook?: any) {
     )))
   }
 
+/**
+ * Individual app card in app grid.
+ * @param props.app App info to render in card
+ * @param tagHook Functor to produce key tied functions to propgate tag selection events upwards
+ */
 export const AppTile : React.FC<IProps> = (props : IProps) => {
 
     const {app_id, name, author, logo_url, tagline, tags} = props.app

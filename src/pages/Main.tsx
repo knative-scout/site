@@ -1,7 +1,8 @@
-import React from 'react'
-import {KSPage} from './KSPage'
+import React from 'react';
+import {KSPage} from './KSPage';
 import { Title, Button, Brand, Level, LevelItem, Grid, GridItem } from '@patternfly/react-core';
-import logo from '../imgs/Scout_Cloud2.png'
+import logo from '../imgs/Scout_Cloud2.png';
+import {Link} from 'react-router-dom';
 
 
 const MainTop = (
@@ -15,10 +16,10 @@ const MainTop = (
         <div className="ks-main__top__buttons">
             <Level gutter="lg">
                 <LevelItem>
-                    <Button component="a" href="/apps">Explore Apps</Button>
+                    <Link to="/apps"><Button className="ks-main__top__buttons__links">Explore Apps</Button></Link>
                 </LevelItem>
                 <LevelItem>
-                    <Button component="a" href="/">Learn More</Button>
+                    <Link to="/learn"><Button className="ks-main__top__buttons__links">Learn More</Button></Link>
                 </LevelItem>
             </Level>
         </div>
@@ -33,7 +34,7 @@ const MainMid = (
         <div className="ks-main__mid__info">
             <div className="ks-main__mid__info__sec">
                 <Title className="ks-main__mid__info__sec__title" size="xl">Want to get started with serverless architecture?</Title>
-                <div className="ks-main__mid__info__sec__content"><a href="/">Our documentation</a> has everything you need to get started writing and deploying your own serverless apps.</div>
+                <div className="ks-main__mid__info__sec__content"><a href="/learn">Our documentation</a> has everything you need to get started writing and deploying your own serverless apps.</div>
             </div>
             <div className="ks-main__mid__info__sec">
                 <Title className="ks-main__mid__info__sec__title" size="xl">Want to explore serverless apps written by others?</Title> 

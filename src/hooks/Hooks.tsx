@@ -3,6 +3,10 @@ import { PrintArray } from '../utils/Utils';
 
 const baseurl = "https://api.kscout.io"
 
+/**
+ * Hook used to fetch specific app from api
+ * @param appID app to fetch
+ */
 export function useAppById(appID : string) {
 
     const [appById,setAppById] = useState(null);
@@ -21,7 +25,12 @@ export function useAppById(appID : string) {
     return appById;
 }
 
-
+/**
+ * Hook used to fetch complete app list from api
+ * @param query search string to match apps with
+ * @param tags list of tags to filter apps with
+ * @param categories list of categories to filter apps with
+ */
 export function useAppList(query:string, tags:string[], categories:string[]) {
 
     const[appList,setAppList] = useState([]);
@@ -45,6 +54,10 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     return appList;
 }
 
+/**
+ * Hook used to fetch complete category list from api
+ * @param query search string to match apps with. Returns list of categories of apps matching search query.
+ */
 export function useCategoryList(query:string) {
 
     const[categoryList,setCategoryList] = useState([]);
@@ -66,7 +79,10 @@ export function useCategoryList(query:string) {
     return categoryList;
 }
 
-
+/**
+ * Hook used to fetch complete tag list from api
+ * @param query search string to match apps with. Returns list of tags of apps matching search query.
+ */
 export function useTagList(query:string) {
 
     const[tagList,setTagList] = useState([]);

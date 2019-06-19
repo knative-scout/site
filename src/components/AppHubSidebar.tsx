@@ -1,8 +1,19 @@
 import React, {useState} from 'react'
 import { Stack, Select, StackItem, SelectVariant, SelectOption, PageSidebar, Checkbox } from '@patternfly/react-core';
 
-export function AppHubSidebar(props: {categories: string[], selectedCategories : string[], tags: string[], selectedTags : string[], onTagSelect : any, onTagClear : any, onCategorySelect :(key : string)  => ((event : any) => any)}){
- /** Pull categories, tags, list as checkboxes, */
+
+/**
+ * Sidebar for apphub page
+ * @param props.categories full list of selectable categories
+ * @param props.selectedCategories list of currently selected categories. Passed custom hook in AppHub page to keep state/update filters.
+ * @param props.tags full list of selectable tags
+ * @param props.selectedTags list of currently selected tags. Passed custom hook in AppHub page to keep state/update filters.
+ * @param props.onTagSelect function to propogate tag selection event upwards and update filters.
+ * @param props.onTagClear function to propogate tag clear event upwards and update filters.
+ * @param props.onCategorySelect functor to provide key-tied functions to propogate category selection events upwards.
+ */
+export function AppHubSidebar(props: {categories: string[], selectedCategories : string[], tags: string[], selectedTags : string[], onTagSelect : any, 
+    onTagClear : any, onCategorySelect :(key : string)  => ((event : any) => any)}){
     return(
             <Stack className="ks-apphub-sidebar" >
                 <StackItem isFilled={false}>
@@ -15,7 +26,6 @@ export function AppHubSidebar(props: {categories: string[], selectedCategories :
                     <label htmlFor="tagselect" className="ks-apphub-sidebar__label">Tags</label>
                     <TagSelect tags={props.tags} selected={props.selectedTags} onTagSelect={props.onTagSelect} onTagClear={props.onTagClear}></TagSelect>
                 </StackItem>
-                
            </Stack>
     );
     
@@ -26,7 +36,7 @@ function CategorySelect(props: {categories :string[], selected : string[], onCha
     return (<div className="ks-apphub-sidebar__catselect">
         {(props.categories.map( category => {
             return (
-                <Checkbox
+                <Checkbox key={category}
                     label={category}
                     onChange={props.onChange(category)}
                     id={category}
