@@ -15,16 +15,14 @@ interface AGProps {
 export const AppGrid : React.FC<AGProps> = (props) => {
 
     return(
-        <Grid sm={2} md={4} lg={6} gutter="md">
+        <div className="ks-appgrid">
             {props.appList == null || props.appList.length == 0? empty :
                 props.appList.map( app => {
                     return (
-                        <GridItem>
                             <AppTile key={app.app_id} app={app} tagHook={props.tagHook}></AppTile>
-                        </GridItem>
                     );
                 })}
-        </Grid>
+        </div>
     );
 }
 
