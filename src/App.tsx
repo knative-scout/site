@@ -1,7 +1,7 @@
 import React, { FunctionComponent, Component } from 'react';
 import logo from './logo.svg';
 import { Preview } from './pages/Preview';
-import { Switch, Route, Router } from 'react-router';
+import { Switch, Route, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { AppGrid } from './components/AppGrid';
 import { AppHub } from './pages/AppHub';

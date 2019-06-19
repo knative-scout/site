@@ -1,6 +1,6 @@
 import React from 'react';
 import ServerlessApp from '../../interfaces/Interfaces';
-import { Gallery, GalleryItem } from '@patternfly/react-core';
+import { Gallery, GalleryItem, Title, Brand } from '@patternfly/react-core';
 import Markdown from 'react-markdown';
 
 
@@ -13,12 +13,26 @@ export function AppDetailsMain (props : { app : ServerlessApp }) {
     const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app
 
     return(
-        <div className="ks-appdetails__main">
-            <h1 className="ks-appdetails__main__title">{name}</h1>
-            <img className="ks-appdetails__main__logo" src={logo_url} alt={name}></img>
+        <div className="ks-appdetails__main__content">
             {imageGallery(screenshots_urls,name)}
-            <span className="ks-appdetails__main__author">{ author? "By " + author : '' }</span>
-            <Markdown source={description}></Markdown>
+            <Markdown className="ks-appdetails__main__content__description" source={description}></Markdown>
+        </div>
+    );
+}
+
+export function AppDetailsHeader (props : { app : ServerlessApp }) {
+
+    const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app
+
+    return(
+        <div className="ks-header">
+            <div className="ks-appdetails__header">
+                <div className="ks-appdetails__header__left">
+                    <Title size="4xl" className="ks-appdetails__header__title">{name}</Title>
+                    <span className="ks-appdetails__header__author">{ author? "By " + author : '' }</span>
+                </div>
+                <Brand className="ks-appdetails__header__logo" src={logo_url} alt={name}></Brand>
+            </div>
         </div>
     );
 }
@@ -26,7 +40,7 @@ export function AppDetailsMain (props : { app : ServerlessApp }) {
 function imageGalleryItems(screenshots_urls : string[], name : string){
     return screenshots_urls.map( url => {
         return(
-        <GalleryItem>
+        <GalleryItem key={url}>
             <img className="ks-appdetails__main__screenshot" alt={name} src={url}></img>
         </GalleryItem>
         )}

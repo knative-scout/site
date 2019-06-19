@@ -26,7 +26,6 @@ export function AppHubSidebar(props: {categories: string[], selectedCategories :
                     <label htmlFor="tagselect" className="ks-apphub-sidebar__label">Tags</label>
                     <TagSelect tags={props.tags} selected={props.selectedTags} onTagSelect={props.onTagSelect} onTagClear={props.onTagClear}></TagSelect>
                 </StackItem>
-                
            </Stack>
     );
     
@@ -37,7 +36,7 @@ function CategorySelect(props: {categories :string[], selected : string[], onCha
     return (<div className="ks-apphub-sidebar__catselect">
         {(props.categories.map( category => {
             return (
-                <Checkbox
+                <Checkbox key={category}
                     label={category}
                     onChange={props.onChange(category)}
                     id={category}

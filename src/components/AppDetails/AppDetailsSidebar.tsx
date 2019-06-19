@@ -29,7 +29,7 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 
 function SidebarStackItem(label : string, content : string){
     return(
-    <StackItem isFilled className="ks-appdetails__sidebar__stackitem">
+    <StackItem key={label} isFilled={false} className="ks-appdetails__sidebar__stackitem">
         <span className="ks-appdetails__sidebar__stackitem__label">{label}</span>
         <span className="ks-appdetails__sidebar__stackitem__content">{content}</span>
     </StackItem>)

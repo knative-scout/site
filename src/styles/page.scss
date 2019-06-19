@@ -1,6 +1,19 @@
 .ks-topbar {
     background: linear-gradient(to right, #820000, #a30000);
+
+    &__nav {
+        
+        &__item {
+            --pf-c-nav__horizontal-list-link--hover--after--BackgroundColor: white;
+            --pf-c-nav__horizontal-list-link--focus--after--BackgroundColor: white;
+            --pf-c-nav__horizontal-list-link--active--after--BackgroundColor: white;
+            :hover {
+                color: white !important;
+            }
+        }
+    }
 }
+
 
 .ks-header {
     background: linear-gradient(to right, #820000, #a30000);

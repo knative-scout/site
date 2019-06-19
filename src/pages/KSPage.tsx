@@ -1,6 +1,7 @@
 import React, { Component, FunctionComponent } from 'react';
-import { Brand, Page, PageHeader, PageSection} from '@patternfly/react-core';
+import { Brand, Page, PageHeader, PageSection, Nav, NavVariants, NavList, NavItem} from '@patternfly/react-core';
 import Scout_Cloud2 from '../imgs/Scout_Cloud2.png';
+import {Link} from 'react-router-dom';
 
 
 interface KSPProps { components : KSPSection[], sidebar?: any};
@@ -32,14 +33,31 @@ export const wrapSection  = (section : any, props?: {isFilled ?: boolean, noPadd
  */
 export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
 
-    const logo = (
-        <a href="/">
-            <Brand src={Scout_Cloud2} alt="kscout.io"></Brand>
-        </a>
-    )
+    const brand = <Brand src={Scout_Cloud2} alt="KScout.io"></Brand>
+
+    const logoProps = {
+        src: Scout_Cloud2, 
+        href: "/"
+    }
+
+    const NavBar = ( <Nav className="ks-topbar__nav">
+        <NavList variant={NavVariants.horizontal}>
+            <NavItem className="ks-topbar__nav__item ks-topbar__nav__title">
+                <Link to="/">KScout.io</Link>
+            </NavItem>
+            <NavItem className="ks-topbar__nav__item">
+                <Link to="/apps">Apps</Link>
+            </NavItem>
+            <NavItem className="ks-topbar__nav__item">
+                <Link to="/learn">Learn More</Link>
+            </NavItem>
+        </NavList>
+    </Nav>);
 
     const Header =  (
-            <PageHeader className="ks-topbar" logo={logo}/>
+        <PageHeader topNav={NavBar} className="ks-topbar" logo={brand} logoProps={logoProps}>
+           
+        </PageHeader>
     );
 
     const Footer = (
@@ -59,9 +77,9 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         <Page header={Header}
             sidebar={props.sidebar}
         >
-            {props.components.map(c => {
+            {props.components.map((c,index) => {
             return (
-                <PageSection isFilled={c.isFilled} noPadding={c.noPadding} children={c.component}/>
+                <PageSection key={index} isFilled={c.isFilled} noPadding={c.noPadding} children={c.component}/>
             )})}
 
             {Footer}
