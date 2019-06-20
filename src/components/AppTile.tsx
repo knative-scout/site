@@ -33,6 +33,8 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
     const tagStrings = tags ? getTagStrings(tags,props.tagHook) : null;
 
 
+
+
     return (
         
       <Card className="ks-card">
@@ -40,8 +42,8 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
           <CardHeader className="ks-card__heading">
             <a href={'/apps/' + app_id}>
               <div className="ks-card__heading__left">
-                <span className="ks-card__heading__left__title">{name}</span>
-                <span className="ks-card__heading__left__provider">{author}</span>
+                <div className="ks-card__heading__left__title">{name}</div>
+                <div className="ks-card__heading__left__provider">By {author}</div>
               </div>
               <img className="ks-card__heading__logo" alt={name} src={logo_url} />
             </a>

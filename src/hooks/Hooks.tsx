@@ -40,7 +40,7 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
             const squery = '?query=' + query;
             const stags = tags != undefined ? "&tags=" + PrintArray(tags,',') : '';
             const scats = categories != undefined ? "&categories=" + PrintArray(categories,",") : '';
-            var request = baseurl + '/apps' + squery + stags + scats;
+            var request = baseurl + '/nsearch' + squery + stags + scats;
 
             fetch(request)
                 .then( response =>

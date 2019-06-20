@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { Stack, Select, StackItem, SelectVariant, SelectOption, PageSidebar, Checkbox } from '@patternfly/react-core';
+import searchicon from '../imgs/Interface_icon_search_magnifying_glass_white.png';
+import { getEnabledCategories } from 'trace_events';
 
 
 /**
@@ -17,13 +19,13 @@ export function AppHubSidebar(props: {categories: string[], selectedCategories :
     return(
             <Stack className="ks-apphub-sidebar" >
                 <StackItem isFilled={false}>
-                    <span className="ks-apphub-sidebar__heading">Filters</span>
+                    <span className="ks-apphub-sidebar__heading">Categories</span>
                 </StackItem>
                 <StackItem isFilled={false}>
                     <CategorySelect selected={props.selectedCategories} categories={props.categories} onChange={props.onCategorySelect}></CategorySelect>
                 </StackItem>
                 <StackItem isFilled={false}>
-                    <label htmlFor="tagselect" className="ks-apphub-sidebar__label">Tags</label>
+                    <label htmlFor="tagselect" className="ks-apphub-sidebar__heading">Tags</label>
                     <TagSelect tags={props.tags} selected={props.selectedTags} onTagSelect={props.onTagSelect} onTagClear={props.onTagClear}></TagSelect>
                 </StackItem>
            </Stack>
@@ -34,7 +36,7 @@ export function AppHubSidebar(props: {categories: string[], selectedCategories :
 function CategorySelect(props: {categories :string[], selected : string[], onChange : (key : string)  => ((event : any) => any) }){
 
     return (<div className="ks-apphub-sidebar__catselect">
-        {(props.categories.map( category => {
+        {props.categories.length == 0? (<em>No categories match query</em>) : (props.categories.map( category => {
             return (
                 <Checkbox key={category}
                     label={category}

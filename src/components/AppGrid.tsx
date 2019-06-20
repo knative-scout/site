@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppList } from '../hooks/Hooks';
 import { AppTile } from './AppTile';
-import { EmptyState, Grid, GridItem, Gallery, GalleryItem } from '@patternfly/react-core';
+import { EmptyState,EmptyStateBody} from '@patternfly/react-core';
 import ServerlessApp from '../interfaces/Interfaces';
 
 interface AGProps {
@@ -28,6 +28,8 @@ export const AppGrid : React.FC<AGProps> = (props) => {
 
 const empty = (
         <EmptyState>
-            <p>No Apps Found</p>
+            <EmptyStateBody>
+                No Apps Found
+            </EmptyStateBody>
         </EmptyState>
 );
