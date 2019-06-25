@@ -1,6 +1,7 @@
 import React from 'react';
 import {Title, PageSection, Nav, NavList, NavItem} from '@patternfly/react-core';
 import {KSPage, wrapSection} from './KSPage';
+import Markdown from 'react-markdown';
 
 /**
  * Type for one section of a documentation page
@@ -22,9 +23,9 @@ const toDocSection = (section : DocSection) => {
     return (
         <PageSection key={section.title} className="ks-docpage__section">
             <Title id={section.title} className="ks-docpage__section__title" size="2xl">{section.title}</Title>
-            <div className="ks-docpage__section__text">
+            <Markdown className="ks-docpage__section__text">
                 {section.text}
-            </div>
+            </Markdown>
         </PageSection>);
 }
 
@@ -68,6 +69,10 @@ const LMSections = [
         title: 'What is Serverless?',
         text: 'Serverless architectures are application designs that incorporate third-party service, known as Backend-as- a-service or include custom code run in managed, ephemeral containers, known as Function-as-a-service. Read more: https://martinfowler.com/articles/serverless.html'
 
+    },
+    {
+        title: 'How do I Contribute?',
+        text: 'You can contribute apps to the KScout hub by submitting a pull request to [our serverless app repository](https://github.com/kscout/serverless-apps)'
     }
 ]
 
