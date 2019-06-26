@@ -5,7 +5,10 @@ export default interface ServerlessApp {
     app_id: string;
     name: string;
     version: string;
-    author: string;
+    author: {
+        name : string,
+        email : string
+    };
     tagline: string;
     logo_url: string;
     description: string;

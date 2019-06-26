@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { PrintArray } from '../utils/Utils';
+import { Router } from 'react-router';
 
 const baseurl = "https://api.kscout.io"
 
@@ -40,8 +41,8 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
             const squery = '?query=' + query;
             const stags = tags != undefined ? "&tags=" + PrintArray(tags,',') : '';
             const scats = categories != undefined ? "&categories=" + PrintArray(categories,",") : '';
-            var request = baseurl + '/nsearch' + squery + stags + scats;
-
+            var request = baseurl + '/apps' + squery + stags + scats;
+            console.log(request);
             fetch(request)
                 .then( response =>
                     response.json()
@@ -67,6 +68,8 @@ export function useCategoryList(query:string) {
             const squery = '?query=' + query;
             var request = baseurl + '/apps/categories' + squery;
 
+            console.log(request);
+
             fetch(request)
                 .then( response =>
                     response.json()
@@ -91,7 +94,7 @@ export function useTagList(query:string) {
         function handleAppListFetch(){
             const squery = '?query=' + query;
             var request = baseurl + '/apps/tags' + squery;
-
+            console.log(request);
             fetch(request)
                 .then( response =>
                     response.json()

@@ -14,7 +14,7 @@ import { getEnabledCategories } from 'trace_events';
  * @param props.onTagClear function to propogate tag clear event upwards and update filters.
  * @param props.onCategorySelect functor to provide key-tied functions to propogate category selection events upwards.
  */
-export function AppHubSidebar(props: {categories: string[], selectedCategories : string[], tags: string[], selectedTags : string[], onTagSelect : any, 
+export function AppHubSidebar(props: {allCategories: string[], currentCategories: string[], selectedCategories : string[], tags: string[], selectedTags : string[], onTagSelect : any, 
     onTagClear : any, onCategorySelect :(key : string)  => ((event : any) => any)}){
     return(
             <Stack className="ks-apphub-sidebar" >
@@ -22,7 +22,7 @@ export function AppHubSidebar(props: {categories: string[], selectedCategories :
                     <span className="ks-apphub-sidebar__heading">Categories</span>
                 </StackItem>
                 <StackItem isFilled={false}>
-                    <CategorySelect selected={props.selectedCategories} categories={props.categories} onChange={props.onCategorySelect}></CategorySelect>
+                    <CategorySelect selected={props.selectedCategories} allCategories={props.allCategories} currentCategories={props.currentCategories} onChange={props.onCategorySelect}></CategorySelect>
                 </StackItem>
                 <StackItem isFilled={false}>
                     <label htmlFor="tagselect" className="ks-apphub-sidebar__heading">Tags</label>
@@ -33,10 +33,10 @@ export function AppHubSidebar(props: {categories: string[], selectedCategories :
     
 }
 
-function CategorySelect(props: {categories :string[], selected : string[], onChange : (key : string)  => ((event : any) => any) }){
+function CategorySelect(props: {allCategories :string[], currentCategories :string[],selected : string[], onChange : (key : string)  => ((event : any) => any) }){
 
     return (<div className="ks-apphub-sidebar__catselect">
-        {props.categories.length == 0? (<em>No categories match query</em>) : (props.categories.map( category => {
+        {props.allCategories.length == 0? (<em>No categories found</em>) : (props.allCategories.map( category => {
             return (
                 <Checkbox key={category}
                     label={category}
@@ -44,8 +44,8 @@ function CategorySelect(props: {categories :string[], selected : string[], onCha
                     id={category}
                     name={category}
                     aria-label={category}
-                    isChecked={props.selected.includes(category)
-                    }
+                    isChecked={props.selected.includes(category)}
+                    isDisabled={!props.currentCategories.includes(category)}
                 />
             );
         }))}

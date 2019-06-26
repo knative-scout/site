@@ -43,7 +43,7 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
             <a href={'/apps/' + app_id}>
               <div className="ks-card__heading__left">
                 <div className="ks-card__heading__left__title">{name}</div>
-                <div className="ks-card__heading__left__provider">By {author}</div>
+                <div className="ks-card__heading__left__provider">By {author.name}</div>
               </div>
               <img className="ks-card__heading__logo" alt={name} src={logo_url} />
             </a>
