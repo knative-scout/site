@@ -38,10 +38,10 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
     const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app;
     
     const labels :string[] = [
-        "Application","Version","Author","Maintainer","GitHub Repo"
+        "Application","Version","Author","Email","GitHub Repo"
     ];
     const content : string[] = [
-        app_id,version,author,maintainer,github_url
+        app_id,version,author.name,author.email,github_url
     ];
 
 

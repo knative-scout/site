@@ -18,11 +18,18 @@ export function AppHub(props : {}) {
 
     //Pulls list of apps, categories, and tags from server, according to current search query
     const apps = useAppList(searchQuery,tags,categories);
-    const categoryList = useCategoryList(searchQuery);
+    const currentCategoryList = useCategoryList(searchQuery);
     const tagList = useTagList(searchQuery);
 
-    console.log(categoryList);
-    console.log(tagList);
+    const allCategoryList = [
+        "analytics",
+        "automation",
+        "entertainment",
+        "hello-world",
+        "internet of things",
+        "utilities",
+        "virtual assistant",
+        "other"]
 
     function handleSearchChange(e : any) {
         setSearchQuery(e.target.value);
@@ -82,7 +89,7 @@ export function AppHub(props : {}) {
     const AppHubMain : React.FC<{}> = ( props : {} ) => {
         return(
                 <div className="ks-apphub">
-                    <AppHubSidebar tags={tagList} selectedTags={tags} categories={categoryList} selectedCategories={categories}
+                    <AppHubSidebar tags={tagList} selectedTags={tags} allCategories={allCategoryList} currentCategories={currentCategoryList} selectedCategories={categories}
                     onCategorySelect={categoryHandlerFunctor} onTagClear={handleTagClear} onTagSelect={handleTagSelect}/>
                     <AppGrid appList={apps} tagHook={handleTagSelect}/>
                 </div>

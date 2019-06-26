@@ -2,18 +2,20 @@ $ks-card-width: 320px;
 $ks-card-margin: 20px;
 $ks-card-total: $ks-card-width+$ks-card-margin;
 
+$ks-grid-margin: 20px;
+
 $ks-sidebar-width : 200px;
 
 $ks-apphub-width: 90%;
 
 
-$ks-cards-1: $ks-card-total + $ks-sidebar-width;
-$ks-cards-2: $ks-card-total * 2 + $ks-sidebar-width;
-$ks-cards-3: $ks-card-total * 3 + $ks-sidebar-width;
-$ks-cards-4: $ks-card-total * 4 + $ks-sidebar-width;
+$ks-cards-1: $ks-card-total + $ks-sidebar-width + $ks-grid-margin;
+$ks-cards-2: $ks-card-total * 2 + $ks-sidebar-width + $ks-grid-margin;
+$ks-cards-3: $ks-card-total * 3 + $ks-sidebar-width + $ks-grid-margin;
+$ks-cards-4: $ks-card-total * 4 + $ks-sidebar-width + $ks-grid-margin;
 
 //min widths for displaying grids with these # of cards
-$ks-appgrid-width-1: $ks-cards-2 / ($ks-apphub-width/100%);
+$ks-appgrid-width-1: $ks-cards-1 / ($ks-apphub-width/100%);
 $ks-appgrid-width-2: $ks-cards-2 / ($ks-apphub-width/100%);
 $ks-appgrid-width-3: $ks-cards-3 / ($ks-apphub-width/100%);
 $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
@@ -56,6 +58,7 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
   &-sidebar {
 
     width: 200px;
+    padding-top: 50px;
 
 
     &__label {
@@ -87,7 +90,7 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
 
     &__catselect {
       padding-left: 25px;
-
+      text-transform: capitalize;
     }
   } 
 
@@ -160,27 +163,31 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
 .ks-appgrid {
 
   @media screen and (min-width: $ks-appgrid-width-1) {
-    width: $ks-card-total;
+    width: $ks-card-total + $ks-grid-margin;
   }
 
   @media screen and (min-width: $ks-appgrid-width-2) {
-    width: $ks-card-total * 2;
+    width: $ks-card-total * 2+ $ks-grid-margin;
   }
 
   @media screen and (min-width: $ks-appgrid-width-3) {
-    width: $ks-card-total * 3;
+    width: $ks-card-total * 3+ $ks-grid-margin;
   }
 
   @media screen and (min-width: $ks-appgrid-width-4) {
-    width: $ks-card-total * 4;
+    width: $ks-card-total * 4+ $ks-grid-margin;
   }
 
 
   &__grid {
+    padding-left: 20px;
 
     @media screen and (max-width: $ks-appgrid-width-1) {
       flex-direction: column;
     }
+
+    background-color: lightgray;
+    padding-top: 20px;
   
     display: flex;
     flex-wrap: wrap;
