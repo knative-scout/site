@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ServerlessApp from '../../interfaces/Interfaces';
-import { Stack, StackItem, Button, Modal} from '@patternfly/react-core';
+import { Stack, StackItem, Button, Modal, ClipboardCopy} from '@patternfly/react-core';
 import {Map2} from '../../utils/Utils';
 import { useDeployInstructions } from '../../hooks/Hooks';
 import Markdown from 'react-markdown';
@@ -25,7 +25,7 @@ const DeployButton : React.FunctionComponent<DBProps> = (props : DBProps) => {
                  setIsModalOpen(false);
              }}
          >
-            <Markdown source={deployInstructions}/>
+            <Markdown className="ks-markdown" source={deployInstructions}/>
          </Modal>
      </div>);
  }
