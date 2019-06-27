@@ -10,8 +10,11 @@ interface DBProps {
     appID : string
 }
 const DeployButton : React.FunctionComponent<DBProps> = (props : DBProps) => {
+
     const [isModalOpen,setIsModalOpen] = useState(false);
     const deployInstructions = useDeployInstructions(props.appID);
+
+    const Code = ((props : any) => <ClipboardCopy isReadOnly>{props.value}</ClipboardCopy>);
     
     return (<div>
          <Button onClick={() => setIsModalOpen(true)}variant="primary">
@@ -25,7 +28,7 @@ const DeployButton : React.FunctionComponent<DBProps> = (props : DBProps) => {
                  setIsModalOpen(false);
              }}
          >
-            <Markdown className="ks-markdown" source={deployInstructions}/>
+            <Markdown className="ks-markdown" renderers={{code : Code}}source={deployInstructions}/>
          </Modal>
      </div>);
  }
