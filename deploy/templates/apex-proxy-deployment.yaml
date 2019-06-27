@@ -11,13 +11,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: site-apex
+      app: site
       component: apex-proxy
       env: {{ .Values.env }}
   template:
     metadata:
       labels:
-        app: site-apex
+        app: site
         component: apex-proxy
         env: {{ .Values.env }}
     spec:
