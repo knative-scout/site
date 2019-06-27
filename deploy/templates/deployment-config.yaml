@@ -13,6 +13,7 @@ spec:
     component: site
     env: {{ .Values.env }}
   triggers:
+    - type: ConfigChange
     - type: ImageChange
       imageChangeParams:
         containerNames:
