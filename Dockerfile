@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add caddy nodejs yarn
+RUN apk add caddy nodejs yarn python python3
 
 RUN mkdir /app
 WORKDIR /app
