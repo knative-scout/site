@@ -5,11 +5,12 @@ MAKE ?= make
 DOCKER_TAG ?= kscout/site:${ENV}-latest
 
 KUBE_LABELS ?= app=site,env=${ENV}
+KUBE_TYPES ?= dc,configmap,secret,deploy,svc,route,is,pv,pvc
 
 # deploy to ENV
 deploy:
 	@if [ -z "${ENV}" ]; then echo "ENV must be set"; exit 1; fi
-	helm template --set env=${ENV} deploy | oc apply -f -
+	helm template --values deploy/values.yaml --set global.env=${ENV} deploy | oc apply -f -
 
 # deploy to production
 deploy-prod:
@@ -24,7 +25,7 @@ rm-deploy:
 	@if [ -z "${ENV}" ]; then echo "ENV must be set"; exit 1; fi
 	@echo "Hit any key to confirm"
 	@read confirm
-	oc get -l ${KUBE_LABELS} dc,configmap,secret,deploy,svc,route -o yaml | oc delete -f -
+	oc get -l ${KUBE_LABELS} ${KUBE_TYPES} -o yaml | oc delete -f -
 
 # build and push docker image
 docker: docker-build docker-push
