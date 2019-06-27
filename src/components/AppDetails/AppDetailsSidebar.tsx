@@ -38,10 +38,10 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
     const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app;
     
     const labels :string[] = [
-        "Application","Version","Author","Email","GitHub Repo"
+        "Application","Version","Author","Email"
     ];
     const content : string[] = [
-        app_id,version,author.name,author.email,github_url
+        app_id,version,author.name,author.email
     ];
 
 
@@ -51,6 +51,11 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
                 <DeployButton appID={app_id}></DeployButton>
             </StackItem>
             { Map2(labels,content,SidebarStackItem) }
+
+            <StackItem isFilled={false} className="ks-appdetails__sidebar__stackitem">
+                <span className="ks-appdetails__sidebar__stackitem__label">GitHub Repo</span>
+                <a href={github_url} className="ks-appdetails__sidebar__stackitem__content">Click Here</a>
+            </StackItem>
         </Stack>
     );
 

@@ -29,7 +29,7 @@ export function AppDetailsHeader (props : { app : ServerlessApp }) {
             <div className="ks-appdetails__header">
                 <div className="ks-appdetails__header__left">
                     <Title size="4xl" className="ks-appdetails__header__title">{name}</Title>
-                    <span className="ks-appdetails__header__author">{ author? "By " + author : '' }</span>
+                    <span className="ks-appdetails__header__author">{ author? "By " + author.name : '' }</span>
                 </div>
                 <Brand className="ks-appdetails__header__logo" src={logo_url} alt={name}></Brand>
             </div>
