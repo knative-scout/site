@@ -1,0 +1,46 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: {{ .Values.env }}-site
+  labels:
+    app: site
+    component: site
+    env: {{ .Values.env }}
+spec:
+  replicas: 1
+  selector:
+    app: site
+    component: site
+    env: {{ .Values.env }}
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        containerNames:
+          - site
+        from:
+          kind: ImageStreamTag
+          name: site:{{ .Values.env }}-latest
+  template:
+    metadata:
+      labels:
+        app: site
+        component: site
+        env: {{ .Values.env }}
+    spec:
+      containers:
+        - name: site
+          image: kscout/site:{{ .Values.env }}-latest
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP

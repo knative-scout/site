@@ -1,0 +1,41 @@
+{{ if eq .Values.env "prod" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.env }}-site-apex-proxy
+  labels:
+    app: site
+    component: apex-proxy
+    env: {{ .Values.env }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: site-apex
+      component: apex-proxy
+      env: {{ .Values.env }}
+  template:
+    metadata:
+      labels:
+        app: site-apex
+        component: apex-proxy
+        env: {{ .Values.env }}
+    spec:
+      containers:
+        - name: nginx
+          image: docker.io/kscout/site-apex:latest
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProb:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+{{ end }}
