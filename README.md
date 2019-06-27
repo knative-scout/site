@@ -29,10 +29,10 @@ Deploy production by running:
 make deploy-prod
 ```
 
-Deploy staging by running:
+If this is the first time production has been deployed run:
 
 ```
-make deploy-staging
+oc rollout latest dc/prod-site
 ```
 
 ## Apex Proxy
