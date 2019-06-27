@@ -7,7 +7,7 @@ metadata:
     component: site
     env: {{ .Values.env }}
 spec:
-  host: {{- template "site.host" . }}
+  host: {{ template "site.host" . }}
   path: /
   to:
     kind: Service
@@ -19,4 +19,4 @@ spec:
     termination: edge
 status:
   ingress:
-    - host: {{- template "site.host" . }}
+    - host: {{ template "site.host" . }}
