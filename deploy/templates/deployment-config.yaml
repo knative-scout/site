@@ -1,17 +1,17 @@
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
-  name: {{ .Values.env }}-site
+  name: {{ .Values.global.env }}-site
   labels:
     app: site
     component: site
-    env: {{ .Values.env }}
+    env: {{ .Values.global.env }}
 spec:
   replicas: 1
   selector:
     app: site
     component: site
-    env: {{ .Values.env }}
+    env: {{ .Values.global.env }}
   triggers:
     - type: ConfigChange
     - type: ImageChange
@@ -20,17 +20,17 @@ spec:
           - site
         from:
           kind: ImageStreamTag
-          name: site:{{ .Values.env }}-latest
+          name: site:{{ .Values.global.env }}-latest
   template:
     metadata:
       labels:
         app: site
         component: site
-        env: {{ .Values.env }}
+        env: {{ .Values.global.env }}
     spec:
       containers:
         - name: site
-          image: kscout/site:{{ .Values.env }}-latest
+          image: kscout/site:{{ .Values.global.env }}-latest
           ports:
             - name: http
               containerPort: 80
