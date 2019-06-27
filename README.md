@@ -23,10 +23,16 @@ yarn start
 ```
 
 # Deployment
-Run:
+Deploy production by running:
 
 ```
-./deploy/deploy.sh -rb
+make deploy-prod
+```
+
+Deploy staging by running:
+
+```
+make deploy-staging
 ```
 
 ## Apex Proxy
