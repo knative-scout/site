@@ -1,0 +1,20 @@
+{{ if eq .Values.global.env "prod" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.global.env }}-site-apex-proxy
+  labels:
+    app: site
+    component: apex-proxy
+    env: {{ .Values.global.env }}
+spec:
+  selector:
+    app: site
+    component: apex-proxy
+    env: {{ .Values.global.env }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http
+      name: http
+{{ end }}

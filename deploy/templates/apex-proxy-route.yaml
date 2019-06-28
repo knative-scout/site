@@ -1,0 +1,24 @@
+{{ if eq .Values.global.env "prod" }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ .Values.global.env }}-site-apex-proxy
+  labels:
+    app: site
+    component: apex-proxy
+    env: {{ .Values.global.env }}
+spec:
+  host: kscout.io
+  path: /
+  to:
+    kind: Service
+    name: {{ .Values.global.env }}-site-apex-proxy
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+status:
+  ingress:
+    - host: kscout.io
+{{ end }}
