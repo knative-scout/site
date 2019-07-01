@@ -32,7 +32,7 @@ make deploy-prod
 If this is the first time production has been deployed run:
 
 ```
-oc rollout latest dc/prod-site
+make rollout-prod
 ```
 
 ## Apex Proxy

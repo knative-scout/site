@@ -2,6 +2,10 @@ http://* {
   root /app/build
   tls off
 
+  rewrite /health {
+    to /
+  }
+
   rewrite /apps {
     to /
   }
