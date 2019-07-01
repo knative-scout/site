@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . .
 
 RUN yarn install
+RUN yarn add react-scripts
 RUN yarn build
 
 CMD caddy
