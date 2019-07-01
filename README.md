@@ -23,6 +23,12 @@ yarn start
 ```
 
 # Deployment
+Initialize submodules:
+
+```
+git submodule update --init --recursive
+```
+
 Deploy production by running:
 
 ```
