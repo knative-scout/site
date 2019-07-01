@@ -1,6 +1,15 @@
-# Deployment environment, usually "prod" or "staging"
-#env: 
+# Global shared chart configuration
+global:
+  # Deployment environment, usually "prod" or "staging"
+  #env: 
 
-# Host to deploy service under. Defaults to www.kscout.io if env is prod.
-# Otherwise defaults to ENV-www.kscout.io
-#host: 
+  # App being deployed
+  app: site
+
+# HTTP service chart
+http:
+  # Serve under host
+  defaultHost: www.kscout.io
+
+  # Internal app container port
+  port: 80
