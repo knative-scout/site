@@ -43,8 +43,6 @@ const MainMid = (
             </div>
             <Title size="xl">Explore apps, see their source code, and deploy them directly to your own cluster, all from KScout.io.</Title>
         </div>
-
-        <ChatBot/>
         
     </div>
     
