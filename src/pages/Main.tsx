@@ -3,6 +3,7 @@ import {KSPage} from './KSPage';
 import { Title, Button, Brand, Level, LevelItem, Grid, GridItem } from '@patternfly/react-core';
 import logo from '../imgs/Scout_Cloud2.png';
 import {Link} from 'react-router-dom';
+import {ChatBot} from '../components/ChatBot'
 
 
 const MainTop = (

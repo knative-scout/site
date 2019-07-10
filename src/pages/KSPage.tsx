@@ -1,7 +1,8 @@
-import React, { Component, FunctionComponent } from 'react';
-import { Brand, Page, PageHeader, PageSection, Nav, NavVariants, NavList, NavItem} from '@patternfly/react-core';
+import React, { useState, Component, FunctionComponent } from 'react';
+import { Brand, Modal, Card, Page, PageHeader, PageSection, Nav, NavVariants, NavList, NavItem, Popover, Button} from '@patternfly/react-core';
 import Scout_Cloud2 from '../imgs/Scout_Cloud2.png';
 import {Link} from 'react-router-dom';
+import { ChatBot } from '../components/ChatBot';
 
 
 interface KSPProps { components : KSPSection[], sidebar?: any};
@@ -54,8 +55,30 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         </NavList>
     </Nav>);
 
+    const [isModalOpen,setIsModalOpen] = useState(false);
+    const ChatPop = (
+        <div>
+            <Button onClick={() => setIsModalOpen(true)}variant="secondary">
+                Scout Chat
+            </Button>
+            <Modal
+            isSmall
+            title="Scout Chat"
+            isOpen={isModalOpen}
+            onClose={() => {
+                setIsModalOpen(false);
+            }}>
+                <ChatBot/>
+            </Modal>
+        </div>
+    );
+
     const Header =  (
-        <PageHeader topNav={NavBar} className="ks-topbar" logo={brand} logoProps={logoProps}>
+        <PageHeader 
+            topNav={NavBar} 
+            className="ks-topbar" 
+            logo={brand} logoProps={logoProps}
+            toolbar={ChatPop}>
            
         </PageHeader>
     );

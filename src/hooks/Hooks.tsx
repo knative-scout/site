@@ -124,5 +124,62 @@ export function useDeployInstructions(appID : string) {
     }, [appID]);
 
     return deployInstructions;
+}
+
+export function useSessionID(){
+
+    const [sessionID,setSessionID] = useState('');
+
+    useEffect(function handleSessionIDFetch(){
+        const local = localStorage.getItem('sessionID');
+        if(local){ 
+            setSessionID(local);
+        }
+        else { //if no sessionid stored
+            fetch("https://bot.kscout.io/session")
+                .then( response =>
+                    response.json()
+                        .then( data => {
+                            setSessionID(data.session_id);
+                            localStorage.setItem('sessionID',data.session_id);
+                        }
+                        ))
+        }
+    });
+
+    return sessionID;
+}
+/*
+function wrapChatStep(userMessage : string, botMessage : string, chatSteps : any){
+
+    const steps = chatSteps.slice();
+    const len = chatSteps.length();
+    steps.push(
+        {
+            id: len+1,
+            user: true,
+            message: 
+        }
+    )
+
+    return steps;
 
 }
+
+
+export function useChatSteps(message : string){
+
+    const [chatSteps,setChatSteps] = useState([]);
+
+    useEffect(function handleChatFetch(){
+        fetch('https://bot.kscout.io/messages')
+            .then( response =>
+                response.json()
+                    .then( data =>
+                        setChatSteps(wrapChatStep(data.text,chatSteps))
+                    )
+            )
+});
+    
+
+}*/
