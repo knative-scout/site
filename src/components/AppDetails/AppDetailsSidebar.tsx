@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ServerlessApp from '../../interfaces/Interfaces';
-import { Stack, StackItem, Button, Modal, ClipboardCopy} from '@patternfly/react-core';
+import { Stack, StackItem, Button, Modal, ClipboardCopy, ClipboardCopyVariant} from '@patternfly/react-core';
 import {Map2} from '../../utils/Utils';
 import { useDeployInstructions } from '../../hooks/Hooks';
 import Markdown from 'react-markdown';
@@ -14,7 +14,7 @@ const DeployButton : React.FunctionComponent<DBProps> = (props : DBProps) => {
     const [isModalOpen,setIsModalOpen] = useState(false);
     const deployInstructions = useDeployInstructions(props.appID);
 
-    const Code = ((props : any) => <ClipboardCopy isReadOnly>{props.value}</ClipboardCopy>);
+    const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
     
     return (<div>
          <Button onClick={() => setIsModalOpen(true)}variant="primary">

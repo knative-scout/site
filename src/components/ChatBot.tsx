@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import { useSessionID } from '../hooks/Hooks';
-import { TextInput, InputGroup, Button, ButtonVariant, Form, Stack, StackItem } from '@patternfly/react-core';
+import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem } from '@patternfly/react-core';
 import {SearchIcon, PooStormIcon} from '@patternfly/react-icons';
 import { truncateSync } from 'fs';
 import _ from 'lodash';
+import ServerlessApp from '../interfaces/Interfaces';
+import { AppTile } from './AppTile';
 
 
 const ReactMarkdown = require('react-markdown/with-html');
@@ -16,7 +18,8 @@ interface option {
 interface ChatMessage {
     isUser : boolean,
     text : string,
-    options?: option[]
+    options?: option[],
+    apps?: ServerlessApp[]
 }
 
 interface ChatProps {
@@ -28,7 +31,7 @@ export const ChatBot = (props : ChatProps) => {
 
     const [steps,setSteps] = useState<ChatMessage[]>([]);
 
-    const addStep = (text : string, isUser : boolean, options?: option[]) =>{
+    const addStep = (text : string, isUser : boolean, options?: option[], apps?: ServerlessApp[]) =>{
 
         setSteps(steps => steps.concat( 
             options?
@@ -36,11 +39,17 @@ export const ChatBot = (props : ChatProps) => {
                 isUser: isUser,
                 text: text,
                 options: options
-            } : 
+            } :
+            apps? 
+            {
+                isUser: isUser,
+                text: text,
+                apps: apps
+            } :
             {
                 isUser: isUser,
                 text: text
-            }
+            } 
         ));
 
     }
@@ -50,7 +59,8 @@ export const ChatBot = (props : ChatProps) => {
         return ({
             label: option.label,
             callback: option.value.input.text
-        })});
+        })
+    });
 
     const sendMessage = (text :string) => {
         console.log("msg text: " + text);
@@ -73,7 +83,9 @@ export const ChatBot = (props : ChatProps) => {
                 .then( data => {
                     console.log(data);
                     const d = JSON.parse(data);
-                    d.options ? addStep(d.title,false,d.options.map(optionMap)) : addStep(d.text,false);
+                    d.options ? addStep(d.title,false,d.options.map(optionMap)) :
+                    d.apps? addStep("Apps",false,undefined,d.apps) :
+                    addStep(d.text,false);
                 }));
     }
 
@@ -90,6 +102,8 @@ export const ChatBot = (props : ChatProps) => {
         setMessage('');
     }
 
+    const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
+
     return (
         <div className="ks-chatbot">
             <div className="ks-chatbot__header">Scout Chat</div>
@@ -98,12 +112,25 @@ export const ChatBot = (props : ChatProps) => {
                     return (
                         <StackItem isFilled={false} className={
                         message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
-                        "ks-chatbot__message ks-chatbot__message__bot"}><ReactMarkdown escapeHtml={false} source={message.text}/>
-                        {message.options ? <div className="ks-chatbot__message__options"> {
-                            message.options.map((option : option) => {
+                        "ks-chatbot__message ks-chatbot__message__bot"}>
+                            <ReactMarkdown renderers={{code : Code}} escapeHtml={false} source={message.text}/>
+                            {message.options ? (<div className="ks-chatbot__message__options"> {
+                                message.options.map((option : option) => {
+                                    return (
+                                    <Button className="ks-chatbot__message__options__button" key={option.label} variant="tertiary" onClick={(e) => sendMessage(option.callback)}><div>{option.label}</div></Button>);
+                                })} 
+                            </div>) : (
+                            message.apps ? message.apps.map((app : ServerlessApp) => {
+                                console.log('HEREHEREHERE mapping apps');
                                 return (
-                                <Button className="ks-chatbot__message__options__button" key={option.label} variant="tertiary" onClick={(e) => sendMessage(option.callback)}><div>{option.label}</div></Button>);
-                            })} </div> : ''}
+                                    <div>
+                                        <AppTile app={app}/>
+                                        <Button className="ks-chatbot__message__options__button" 
+                                            variant="tertiary" 
+                                            onClick={(e) => sendMessage(app.app_id)}><div>{"Deploy " + app.app_id}</div></Button>
+                                    </div>);
+                            }) : '')
+                        }
                         </StackItem>
                     );
                 })}
