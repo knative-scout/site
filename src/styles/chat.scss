@@ -1,5 +1,5 @@
 .ks-chatbot {
-    height: 400px;
+    height: 700px;
     border: 1px solid black;
     position: relative;
 
@@ -11,8 +11,8 @@
     &__messages {
         overflow-x: hidden;
         overflow-y: auto;
-        height: 340px;
-        max-height: 340px;
+        height: 640px;
+        max-height: 640px;
 
     }
 
@@ -61,5 +61,11 @@
         bottom: 0%;
         right: 0%;
         width: 100%;
+    }
+
+    &__apptile {
+        width: 280px;
+        height: 260px;
+        
     }
 }

@@ -124,7 +124,7 @@ export const ChatBot = (props : ChatProps) => {
                                 console.log('HEREHEREHERE mapping apps');
                                 return (
                                     <div>
-                                        <AppTile app={app}/>
+                                        <AppTile className="ks-chatbot__apptile" app={app}/>
                                         <Button className="ks-chatbot__message__options__button" 
                                             variant="tertiary" 
                                             onClick={(e) => sendMessage(app.app_id)}><div>{"Deploy " + app.app_id}</div></Button>
