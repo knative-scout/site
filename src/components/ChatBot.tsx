@@ -113,7 +113,7 @@ export const ChatBot = (props : ChatProps) => {
                         <StackItem isFilled={false} className={
                         message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
                         "ks-chatbot__message ks-chatbot__message__bot"}>
-                            <ReactMarkdown renderers={{code : Code}} escapeHtml={false} source={message.text}/>
+                            <ReactMarkdown className="ks-markdown" renderers={{code : Code}} escapeHtml={!message.isUser} source={message.text}/>
                             {message.options ? (<div className="ks-chatbot__message__options"> {
                                 message.options.map((option : option) => {
                                     return (
