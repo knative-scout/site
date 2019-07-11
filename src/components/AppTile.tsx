@@ -5,7 +5,8 @@ import { Card, CardHeader, CardFooter, CardBody, Label } from '@patternfly/react
 
 interface IProps {
     app: ServerlessApp
-    tagHook?: any
+    tagHook?: any,
+    className?: string
 }
 
 
@@ -37,7 +38,7 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
 
     return (
         
-      <Card className="ks-card">
+      <Card className={"ks-card "+props.className}>
         
           <CardHeader className="ks-card__heading">
             <a href={'/apps/' + app_id}>

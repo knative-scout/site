@@ -227,6 +227,7 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
       display: inline-block;
       width: 70%;
       font-size: 100%;
+      white-space: normal !important;
 
       &__title {
         font-weight: bold;
