@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Component} from 'react';
 import { useSessionID } from '../hooks/Hooks';
 import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem } from '@patternfly/react-core';
 import {SearchIcon, PooStormIcon} from '@patternfly/react-icons';
@@ -6,6 +6,7 @@ import { truncateSync } from 'fs';
 import _ from 'lodash';
 import ServerlessApp from '../interfaces/Interfaces';
 import { AppTile } from './AppTile';
+import { noop } from '@babel/types';
 
 
 const ReactMarkdown = require('react-markdown/with-html');
@@ -25,11 +26,14 @@ interface ChatMessage {
 interface ChatProps {
 }
 
+
+
 export const ChatBot = (props : ChatProps) => {
 
     const sessionID = useSessionID();
 
     const [steps,setSteps] = useState<ChatMessage[]>([]);
+
 
     const addStep = (text : string, isUser : boolean, options?: option[], apps?: ServerlessApp[]) =>{
 
@@ -51,6 +55,10 @@ export const ChatBot = (props : ChatProps) => {
                 text: text
             } 
         ));
+
+        let end = document.getElementById('messagesEnd');
+        end? end.scrollIntoView() : noop();
+    
 
     }
 
@@ -134,6 +142,7 @@ export const ChatBot = (props : ChatProps) => {
                         </StackItem>
                     );
                 })}
+                <StackItem isFilled={false} id="messagesEnd"></StackItem>
             </Stack>
             <Form className="ks-chatbot__input" onSubmit={handleSubmit}>
                 <InputGroup>
