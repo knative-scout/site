@@ -87,7 +87,7 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         <PageSection isFilled={false} className="ks-footer" variant="dark">
             <div className="ks-footer-content">
                 KScout.io is a smart hub for serverless applications, currently
-                in development by a team of Red Hat interns.
+                in development by a team at Red Hat.
                 <a href="https://github.com/kscout">View our repositories and contribute serverless apps here.</a>
             </div> 
         </PageSection>
