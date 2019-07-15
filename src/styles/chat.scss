@@ -61,11 +61,22 @@
         bottom: 0%;
         right: 0%;
         width: 100%;
+        border-top: solid 1px black;
     }
 
     &__apptile {
         width: 280px;
         height: 260px;
         
+    }
+
+    &__sendicon {
+        width: 25px;
+    }
+
+    &__sendbutton {
+        padding-bottom: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 8px !important;
     }
 }

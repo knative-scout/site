@@ -1,12 +1,12 @@
 import React, {useState, Component} from 'react';
 import { useSessionID } from '../hooks/Hooks';
 import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem } from '@patternfly/react-core';
-import {SearchIcon, PooStormIcon} from '@patternfly/react-icons';
 import { truncateSync } from 'fs';
 import _ from 'lodash';
 import ServerlessApp from '../interfaces/Interfaces';
 import { AppTile } from './AppTile';
 import { noop } from '@babel/types';
+import send from '../imgs/send.png'
 
 
 const ReactMarkdown = require('react-markdown/with-html');
@@ -59,7 +59,6 @@ export const ChatBot = (props : ChatProps) => {
         let end = document.getElementById('messagesEnd');
         end? end.scrollIntoView() : noop();
     
-
     }
 
 
@@ -147,7 +146,7 @@ export const ChatBot = (props : ChatProps) => {
             <Form className="ks-chatbot__input" onSubmit={handleSubmit}>
                 <InputGroup>
                     <TextInput value={message} onChange={handleTextChange} id="chatbot-input"/>
-                    <Button type='submit' variant={ButtonVariant.tertiary}><SearchIcon /></Button>
+                    <Button className="ks-chatbot__sendbutton" type='submit' variant={ButtonVariant.tertiary}><img className="ks-chatbot__sendicon" src={send} alt="send"/></Button>
                 </InputGroup>
             </Form>
 
