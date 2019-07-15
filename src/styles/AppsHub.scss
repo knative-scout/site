@@ -271,6 +271,7 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
       margin: 2px;
       display: inline-block;
       -webkit-user-select: none;
+      cursor: pointer;
 
       &:hover {
         background-color: #163f9e !important;
