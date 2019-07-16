@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAppList, useCategoryList, useTagList } from '../hooks/Hooks';
+import { useAppList } from '../hooks/Hooks';
 import {AppGrid} from '../components/AppGrid'
 import {AppHubSidebar} from '../components/AppHubSidebar'
 import { Grid, GridItem } from '@patternfly/react-core';
@@ -17,19 +17,44 @@ export function AppHub(props : {}) {
     const [categories,setCategories] = useState<string[]>([]);
 
     //Pulls list of apps, categories, and tags from server, according to current search query
-    const apps = useAppList(searchQuery,tags,categories);
-    const currentCategoryList = useCategoryList(searchQuery);
-    const tagList = useTagList(searchQuery);
+    const info = useAppList(searchQuery,tags,categories);
+    const apps = info.apps;
+    const currentCategoryList = info.categories;
+    const tagList = info.tags;
 
     const allCategoryList = [
-        "analytics",
-        "automation",
-        "entertainment",
-        "hello-world",
-        "internet of things",
-        "utilities",
-        "virtual assistant",
-        "other"]
+        {
+            label: "Analytics",
+            value: "analytics"
+        },
+        {
+            label: "Automation",
+            value: "automation"
+        },
+        {
+            label: "Entertainment",
+            value: "entertainment"
+        },
+        {
+            label: "Hello World",
+            value: "hello world"
+        },
+        {
+            label: "Internet of Things",
+            value: "internet of things"
+        },
+        {
+            label: "Utilities",
+            value: "utilities"
+        },
+        {
+            label: "Virtual Assistant",
+            value: "virtual assistant"
+        },
+        {
+            label: "Other",
+            value: "other"
+        }]
 
     function handleSearchChange(e : any) {
         setSearchQuery(e.target.value);
