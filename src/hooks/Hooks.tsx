@@ -35,6 +35,8 @@ export function useAppById(appID : string) {
 export function useAppList(query:string, tags:string[], categories:string[]) {
 
     const[appList,setAppList] = useState([]);
+    const [categoryList,setCategoryList] = useState([]);
+    const [tagList,setTagList] = useState([]);
 
     useEffect(
         function handleAppListFetch(){
@@ -46,67 +48,20 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
             fetch(request)
                 .then( response =>
                     response.json()
-                        .then( data =>
-                            setAppList(data.apps)
-                        )
+                        .then( data => {
+                            setAppList(data.apps);
+                            setCategoryList(data.categories);
+                            setTagList(data.tags);
+                        })
                 )
     },[query,tags,categories]);
     
-    return appList;
+    return {
+        apps: appList,
+        categories: categoryList,
+        tags: tagList
+    };
 }
-
-/**
- * Hook used to fetch complete category list from api
- * @param query search string to match apps with. Returns list of categories of apps matching search query.
- */
-export function useCategoryList(query:string) {
-
-    const[categoryList,setCategoryList] = useState([]);
-
-    useEffect(
-        function handleAppListFetch(){
-            const squery = '?query=' + query;
-            var request = baseurl + '/apps/categories' + squery;
-
-            console.log(request);
-
-            fetch(request)
-                .then( response =>
-                    response.json()
-                        .then( data =>
-                            setCategoryList(data.categories)
-                        )
-                )
-    },[query]);
-    
-    return categoryList;
-}
-
-/**
- * Hook used to fetch complete tag list from api
- * @param query search string to match apps with. Returns list of tags of apps matching search query.
- */
-export function useTagList(query:string) {
-
-    const[tagList,setTagList] = useState([]);
-
-    useEffect(
-        function handleAppListFetch(){
-            const squery = '?query=' + query;
-            var request = baseurl + '/apps/tags' + squery;
-            console.log(request);
-            fetch(request)
-                .then( response =>
-                    response.json()
-                        .then( data =>
-                            setTagList(data.tags)
-                        )
-                )
-    },[query]);
-    
-    return tagList;
-}
-
 
 export function useDeployInstructions(appID : string) {
 
@@ -149,37 +104,3 @@ export function useSessionID(){
 
     return sessionID;
 }
-/*
-function wrapChatStep(userMessage : string, botMessage : string, chatSteps : any){
-
-    const steps = chatSteps.slice();
-    const len = chatSteps.length();
-    steps.push(
-        {
-            id: len+1,
-            user: true,
-            message: 
-        }
-    )
-
-    return steps;
-
-}
-
-
-export function useChatSteps(message : string){
-
-    const [chatSteps,setChatSteps] = useState([]);
-
-    useEffect(function handleChatFetch(){
-        fetch('https://bot.kscout.io/messages')
-            .then( response =>
-                response.json()
-                    .then( data =>
-                        setChatSteps(wrapChatStep(data.text,chatSteps))
-                    )
-            )
-});
-    
-
-}*/

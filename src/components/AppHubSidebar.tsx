@@ -14,7 +14,7 @@ import { getEnabledCategories } from 'trace_events';
  * @param props.onTagClear function to propogate tag clear event upwards and update filters.
  * @param props.onCategorySelect functor to provide key-tied functions to propogate category selection events upwards.
  */
-export function AppHubSidebar(props: {allCategories: string[], currentCategories: string[], selectedCategories : string[], tags: string[], selectedTags : string[], onTagSelect : any, 
+export function AppHubSidebar(props: {allCategories: Category[], currentCategories: string[], selectedCategories : string[], tags: string[], selectedTags : string[], onTagSelect : any, 
     onTagClear : any, onCategorySelect :(key : string)  => ((event : any) => any)}){
     return(
             <Stack className="ks-apphub-sidebar" >
@@ -33,19 +33,24 @@ export function AppHubSidebar(props: {allCategories: string[], currentCategories
     
 }
 
-function CategorySelect(props: {allCategories :string[], currentCategories :string[],selected : string[], onChange : (key : string)  => ((event : any) => any) }){
+interface Category {
+    label: string,
+    value: string
+}
+
+function CategorySelect(props: {allCategories :Category[], currentCategories :string[],selected : string[], onChange : (key : string)  => ((event : any) => any) }){
 
     return (<div className="ks-apphub-sidebar__catselect">
         {props.allCategories.length == 0? (<em>No categories found</em>) : (props.allCategories.map( category => {
             return (
-                <Checkbox key={category}
-                    label={category}
-                    onChange={props.onChange(category)}
-                    id={category}
-                    name={category}
-                    aria-label={category}
-                    isChecked={props.selected.includes(category)}
-                    isDisabled={!props.currentCategories.includes(category)}
+                <Checkbox key={category.value}
+                    label={category.label}
+                    onChange={props.onChange(category.value)}
+                    id={category.value}
+                    name={category.value}
+                    aria-label={category.label}
+                    isChecked={props.selected.includes(category.value)}
+                    isDisabled={!props.currentCategories.includes(category.value)}
                 />
             );
         }))}
