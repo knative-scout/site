@@ -1,6 +1,8 @@
 import React from 'react';
 import ServerlessApp from '../interfaces/Interfaces';
+import {Link} from 'react-router-dom';
 import { Card, CardHeader, CardFooter, CardBody, Label } from '@patternfly/react-core';
+import { noop } from '@babel/types';
 
 
 interface IProps {
@@ -37,23 +39,22 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
 
 
     return (
+      <Link to={'/apps/' + app_id}>
+        <Card className={"ks-card "+props.className}>
+            <CardHeader className="ks-card__heading">
+                <div className="ks-card__heading__left">
+                  <div className="ks-card__heading__left__title">{name}</div>
+                  <div className="ks-card__heading__left__provider">By {author.name}</div>
+                </div>
+                <img className="ks-card__heading__logo" alt={name} src={logo_url} />
+            </CardHeader>
+          <CardBody className="ks-card__body">
+              <div className="ks-card__body__description">{tagline}</div>
+          </CardBody>
         
-      <Card className={"ks-card "+props.className}>
-        
-          <CardHeader className="ks-card__heading">
-            <a href={'/apps/' + app_id}>
-              <div className="ks-card__heading__left">
-                <div className="ks-card__heading__left__title">{name}</div>
-                <div className="ks-card__heading__left__provider">By {author.name}</div>
-              </div>
-              <img className="ks-card__heading__logo" alt={name} src={logo_url} />
-            </a>
-          </CardHeader>
-        <CardBody className="ks-card__body">
-          <div className="ks-card__body__description">{tagline}</div>
-        </CardBody>
-      <CardFooter className="ks-card__footer">{tagStrings}</CardFooter>
-    </Card>
+        <CardFooter className="ks-card__footer">{tagStrings}</CardFooter>
+      </Card>
+    </Link>
       
     );
 }

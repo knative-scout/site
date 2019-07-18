@@ -1,4 +1,4 @@
-import React, {useState, Component} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import { useSessionID } from '../hooks/Hooks';
 import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem } from '@patternfly/react-core';
 import { truncateSync } from 'fs';
@@ -6,8 +6,7 @@ import _ from 'lodash';
 import ServerlessApp from '../interfaces/Interfaces';
 import { AppTile } from './AppTile';
 import { noop } from '@babel/types';
-import send from '../imgs/send.png'
-
+import send from '../imgs/send.png';
 
 const ReactMarkdown = require('react-markdown/with-html');
 
@@ -26,18 +25,64 @@ interface ChatMessage {
 interface ChatProps {
 }
 
+/*
+export function useSteps(){
+    const [steps,setSteps] = useState<ChatMessage[]>([]);
 
+    useEffect(function handleStepsChange() {
+        const storedSteps = sessionStorage.getItem('steps');
+        if(storedSteps){
+            setSteps(JSON.parse(storedSteps));
+        }
+    },[]);
+
+    return [steps,setSteps];
+
+}*/
 
 export const ChatBot = (props : ChatProps) => {
 
     const sessionID = useSessionID();
 
-    const [steps,setSteps] = useState<ChatMessage[]>([]);
+    const storedSteps = sessionStorage.getItem('steps');
+    const s = storedSteps ? JSON.parse(storedSteps) : [];
+
+    const [steps,setSteps] = useState<ChatMessage[]>(s) //useSteps();
+
+    const scrollToBottom = () => {
+        let end = document.getElementById('messagesEnd');
+        end? end.scrollIntoView() : noop();
+    }
+    scrollToBottom();
+
+    const updateStorage = (newSteps : ChatMessage[]) => {
+        sessionStorage.setItem('steps',JSON.stringify(newSteps));
+    }
 
 
     const addStep = (text : string, isUser : boolean, options?: option[], apps?: ServerlessApp[]) =>{
 
-        setSteps(steps => steps.concat( 
+        setSteps(steps => {
+
+            updateStorage(steps.concat( 
+                options?
+                {
+                    isUser: isUser,
+                    text: text,
+                    options: options
+                } :
+                apps? 
+                {
+                    isUser: isUser,
+                    text: text,
+                    apps: apps
+                } :
+                {
+                    isUser: isUser,
+                    text: text
+                } )); 
+            
+            return (steps.concat( 
             options?
             {
                 isUser: isUser,
@@ -53,13 +98,17 @@ export const ChatBot = (props : ChatProps) => {
             {
                 isUser: isUser,
                 text: text
-            } 
-        ));
-
-        let end = document.getElementById('messagesEnd');
-        end? end.scrollIntoView() : noop();
+            } )) 
+        }
+        );
+       
     
+
+        scrollToBottom();
     }
+
+    
+
 
 
     const optionMap = ((option : any) => {
@@ -70,7 +119,10 @@ export const ChatBot = (props : ChatProps) => {
     });
 
     const sendMessage = (text :string) => {
-        console.log("msg text: " + text);
+
+        if(text == ''){
+            return;
+        }
 
         addStep(text,true);        
 
@@ -99,7 +151,6 @@ export const ChatBot = (props : ChatProps) => {
     const [message,setMessage] = useState('');
 
     const handleTextChange = (text : any) => {
-        console.log(JSON.stringify(text));
         setMessage(text);
     }
 
@@ -111,9 +162,10 @@ export const ChatBot = (props : ChatProps) => {
 
     const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
 
+
     return (
+
         <div className="ks-chatbot">
-            <div className="ks-chatbot__header">Scout Chat</div>
             <Stack className="ks-chatbot__messages">
                 {steps.map((message : ChatMessage) => {
                     return (
@@ -128,7 +180,6 @@ export const ChatBot = (props : ChatProps) => {
                                 })} 
                             </div>) : (
                             message.apps ? message.apps.map((app : ServerlessApp) => {
-                                console.log('HEREHEREHERE mapping apps');
                                 return (
                                     <div>
                                         <AppTile className="ks-chatbot__apptile" app={app}/>
