@@ -1,7 +1,14 @@
+$ks-chatbot-height: 500px;
+
 .ks-chatbot {
-    height: 700px;
+    height: $ks-chatbot-height;
+    width: 350px;
+    background-color: white;
+    
     border: 1px solid black;
     position: relative;
+    z-index: 10;
+    resize: both;
 
     &__header {
         background-color: #ee0000;
@@ -11,8 +18,8 @@
     &__messages {
         overflow-x: hidden;
         overflow-y: auto;
-        height: 640px;
-        max-height: 640px;
+        height: $ks-chatbot-height - 60;
+        max-height: $ks-chatbot-height - 40;
 
     }
 
@@ -25,6 +32,7 @@
         max-width: 75%;
         padding: 8px;
         display: block;
+        color: black !important;
 
         &__user {
             text-align: right;
@@ -52,6 +60,8 @@
                 max-width: 90%;
                 white-space: normal !important;
                 text-align: left !important;
+                color: black !important;
+                border: 1px solid black !important;
             }
         }
     }

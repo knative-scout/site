@@ -3,6 +3,7 @@ import { Brand, Modal, Card, Page, PageHeader, PageSection, Nav, NavVariants, Na
 import Scout_Cloud2 from '../imgs/Scout_Cloud2.png';
 import {Link} from 'react-router-dom';
 import { ChatBot } from '../components/ChatBot';
+import Draggable from 'react-draggable';
 
 
 interface KSPProps { components : KSPSection[], sidebar?: any};
@@ -55,21 +56,17 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         </NavList>
     </Nav>);
 
-    const [isModalOpen,setIsModalOpen] = useState(false);
+    const [isChatOpen,setIsChatOpen] = useState(false);
     const ChatPop = (
-        <div>
-            <Button onClick={() => setIsModalOpen(true)}variant="secondary">
+        <div className="ks-topbar__chat">
+            <Button onClick={() => setIsChatOpen(!isChatOpen)} variant="secondary">
                 Scout Chat
             </Button>
-            <Modal
-            isSmall
-            title="Scout Chat"
-            isOpen={isModalOpen}
-            onClose={() => {
-                setIsModalOpen(false);
-            }}>
-                <ChatBot/>
-            </Modal>
+            {isChatOpen? 
+                <div className="ks-topbar__chat__window">
+                    <ChatBot/>
+                </div> : ''
+            }
         </div>
     );
 
@@ -78,9 +75,8 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
             topNav={NavBar} 
             className="ks-topbar" 
             logo={brand} logoProps={logoProps}
-            toolbar={ChatPop}>
-           
-        </PageHeader>
+            toolbar={ChatPop}
+        />
     );
 
     const Footer = (
@@ -93,13 +89,11 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         </PageSection>
     )
 
-    
-
-
     return (
         <Page header={Header}
             sidebar={props.sidebar}
         >
+            
             {props.components.map((c,index) => {
             return (
                 <PageSection key={index} isFilled={c.isFilled} noPadding={c.noPadding} children={c.component}/>

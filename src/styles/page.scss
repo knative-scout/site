@@ -1,5 +1,6 @@
 .ks-topbar {
     background: linear-gradient(to right, #820000, #a30000);
+    overflow: visible;
 
     &__nav {
         
@@ -11,6 +12,11 @@
                 color: white !important;
             }
         }
+    }
+
+    &__chat {
+        height: 0px;
+        overflow: visible;
     }
 }
 
