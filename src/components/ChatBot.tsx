@@ -25,21 +25,6 @@ interface ChatMessage {
 interface ChatProps {
 }
 
-/*
-export function useSteps(){
-    const [steps,setSteps] = useState<ChatMessage[]>([]);
-
-    useEffect(function handleStepsChange() {
-        const storedSteps = sessionStorage.getItem('steps');
-        if(storedSteps){
-            setSteps(JSON.parse(storedSteps));
-        }
-    },[]);
-
-    return [steps,setSteps];
-
-}*/
-
 export const ChatBot = (props : ChatProps) => {
 
     const sessionID = useSessionID();
@@ -58,6 +43,8 @@ export const ChatBot = (props : ChatProps) => {
     const updateStorage = (newSteps : ChatMessage[]) => {
         sessionStorage.setItem('steps',JSON.stringify(newSteps));
     }
+
+   
 
 
     const addStep = (text : string, isUser : boolean, options?: option[], apps?: ServerlessApp[]) =>{
@@ -148,7 +135,8 @@ export const ChatBot = (props : ChatProps) => {
                 }));
     }
 
-    const [message,setMessage] = useState('');
+    const m = storedSteps ? '' : 'Hi Scout!';
+    const [message,setMessage] = useState(m);
 
     const handleTextChange = (text : any) => {
         setMessage(text);
@@ -161,6 +149,12 @@ export const ChatBot = (props : ChatProps) => {
     }
 
     const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
+
+
+    var initialize = () => {
+        sendMessage("Hi Scout!");
+        scrollToBottom();
+    }
 
 
     return (
