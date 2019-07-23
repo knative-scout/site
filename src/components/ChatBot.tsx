@@ -16,6 +16,7 @@ interface option {
 }
 
 interface ChatMessage {
+    id : number,
     isUser : boolean,
     text : string,
     options?: option[],
@@ -52,17 +53,20 @@ export const ChatBot = (props : ChatProps) => {
             updateStorage(steps.concat( 
                 options?
                 {
+                    id: steps.length,
                     isUser: isUser,
                     text: text,
                     options: options
                 } :
                 apps? 
                 {
+                    id: steps.length,
                     isUser: isUser,
                     text: text,
                     apps: apps
                 } :
                 {
+                    id: steps.length,
                     isUser: isUser,
                     text: text
                 } )); 
@@ -70,17 +74,20 @@ export const ChatBot = (props : ChatProps) => {
             return (steps.concat( 
             options?
             {
+                id: steps.length,
                 isUser: isUser,
                 text: text,
                 options: options
             } :
             apps? 
             {
+                id: steps.length,
                 isUser: isUser,
                 text: text,
                 apps: apps
             } :
             {
+                id: steps.length,
                 isUser: isUser,
                 text: text
             } )) 
@@ -91,10 +98,6 @@ export const ChatBot = (props : ChatProps) => {
 
         scrollToBottom();
     }
-
-    
-
-
 
     const optionMap = ((option : any) => {
         return ({
@@ -154,9 +157,14 @@ export const ChatBot = (props : ChatProps) => {
             <Stack className="ks-chatbot__messages">
                 {steps.map((message : ChatMessage) => {
                     return (
-                        <StackItem isFilled={false} className={
-                        message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
-                        "ks-chatbot__message ks-chatbot__message__bot"}>
+                        <StackItem 
+                            isFilled={false} 
+                            key={message.id}
+                            className={
+                                message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
+                                "ks-chatbot__message ks-chatbot__message__bot"}
+                            id={message.id == steps.length-1 ? "messagesEnd" : ''}
+                        >
                             <ReactMarkdown className="ks-markdown" renderers={{code : Code}} escapeHtml={(message.isUser)} source={message.text}/>
                             {message.options ? (<div className="ks-chatbot__message__options"> {
                                 message.options.map((option : option) => {
@@ -177,7 +185,7 @@ export const ChatBot = (props : ChatProps) => {
                         </StackItem>
                     );
                 })}
-                <StackItem isFilled={false} id="messagesEnd"></StackItem>
+                <StackItem isFilled={false} ></StackItem>
             </Stack>
             <Form className="ks-chatbot__input" onSubmit={handleSubmit}>
                 <InputGroup>
