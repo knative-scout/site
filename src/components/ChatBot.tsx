@@ -45,8 +45,6 @@ export const ChatBot = (props : ChatProps) => {
     }
 
    
-
-
     const addStep = (text : string, isUser : boolean, options?: option[], apps?: ServerlessApp[]) =>{
 
         setSteps(steps => {
@@ -149,13 +147,6 @@ export const ChatBot = (props : ChatProps) => {
     }
 
     const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
-
-
-    var initialize = () => {
-        sendMessage("Hi Scout!");
-        scrollToBottom();
-    }
-
 
     return (
 
