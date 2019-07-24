@@ -2,12 +2,22 @@
     background: linear-gradient(to right, #820000, #a30000);
     overflow: visible;
 
+    &__brand {
+	max-width: 70px;
+    }
+
     &__nav {
         
         &__item {
             --pf-c-nav__horizontal-list-link--hover--after--BackgroundColor: white;
             --pf-c-nav__horizontal-list-link--focus--after--BackgroundColor: white;
             --pf-c-nav__horizontal-list-link--active--after--BackgroundColor: white;
+
+	    a {
+		font-weight: bold !important;
+		color: white !important;
+	    }
+
             :hover {
                 color: white !important;
             }
