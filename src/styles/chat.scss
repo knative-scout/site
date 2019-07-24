@@ -51,6 +51,10 @@ $ks-chatbot-height: 500px;
             background-color: #e2daec;
         }
 
+        &__apps {
+            max-width: 100%;
+        }
+
         &__options {
             margin: 5px;
 
@@ -77,7 +81,9 @@ $ks-chatbot-height: 500px;
     &__apptile {
         width: 280px;
         height: 260px;
-        
+        background-color: white !important;
+        color: black;
+
     }
 
     &__sendicon {

@@ -91,11 +91,7 @@ export const ChatBot = (props : ChatProps) => {
 
         scrollToBottom();
     }
-
     
-
-
-
     const optionMap = ((option : any) => {
         return ({
             label: option.label,
@@ -155,8 +151,9 @@ export const ChatBot = (props : ChatProps) => {
                 {steps.map((message : ChatMessage) => {
                     return (
                         <StackItem isFilled={false} className={
-                        message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
-                        "ks-chatbot__message ks-chatbot__message__bot"}>
+                        (message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
+                        "ks-chatbot__message ks-chatbot__message__bot") + 
+                        (message.apps? " ks-chatbot__message__apps" : "")}>
                             <ReactMarkdown className="ks-markdown" renderers={{code : Code}} escapeHtml={(message.isUser)} source={message.text}/>
                             {message.options ? (<div className="ks-chatbot__message__options"> {
                                 message.options.map((option : option) => {
