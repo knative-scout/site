@@ -40,22 +40,25 @@ export const AppTile : React.FC<IProps> = (props : IProps) => {
 
 
     return (
-      <Link to={'/apps/' + app_id}>
+     
         <Card className={"ks-card "+props.className}>
             <CardHeader className="ks-card__heading">
-              
+            <Link to={'/apps/' + app_id}>
                 <div className="ks-card__heading__left">
                   <TextFit mode="multi" className="ks-card__heading__left__title">{name}</TextFit>
                   <div className="ks-card__heading__left__provider">By {author.name}</div>
                 </div>
                 <img className="ks-card__heading__logo" alt={name} src={logo_url} />
+                </Link>
             </CardHeader>
-          <CardBody className="ks-card__body">
-              <TextFit mode="multi" max={18} className="ks-card__body__description">{tagline}</TextFit>
-          </CardBody>
+            <CardBody className="ks-card__body">
+              <Link to={'/apps/' + app_id}>
+                <TextFit mode="multi" max={18} className="ks-card__body__description">{tagline}</TextFit>
+              </Link>
+            </CardBody>
         <CardFooter className="ks-card__footer">{tagStrings}</CardFooter>
       </Card>
-    </Link>
+    
       
     );
 }
