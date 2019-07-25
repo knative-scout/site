@@ -176,7 +176,7 @@ export const ChatBot = (props : ChatProps) => {
                             message.apps ? message.apps.map((app : ServerlessApp) => {
                                 return (
                                     <div>
-                                        <AppTile className="ks-chatbot__apptile" app={app}/>
+                                        <AppTile maxFont={17} className="ks-chatbot__apptile" app={app}/>
                                         <Button className="ks-chatbot__message__options__button" 
                                             variant="tertiary" 
                                             onClick={(e) => sendMessage(app.app_id)}><div>{"Deploy " + app.app_id}</div></Button>
