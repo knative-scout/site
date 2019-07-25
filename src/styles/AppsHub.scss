@@ -223,6 +223,11 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
   display: flex;
   flex-flow: column;
 
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
   &__heading {
     background-color: #e8f6f9;
     position: relative;
