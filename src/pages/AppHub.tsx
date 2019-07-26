@@ -18,6 +18,7 @@ export function AppHub(props : {}) {
 
     //Pulls list of apps, categories, and tags from server, according to current search query
     const info = useAppList(searchQuery,tags,categories);
+    const loading = info.loading ? info.loading : false;
     const apps = info.apps;
     const currentCategoryList = info.categories;
     const tagList = info.tags;
@@ -116,7 +117,7 @@ export function AppHub(props : {}) {
                 <div className="ks-apphub">
                     <AppHubSidebar tags={tagList} selectedTags={tags} allCategories={allCategoryList} currentCategories={currentCategoryList} selectedCategories={categories}
                     onCategorySelect={categoryHandlerFunctor} onTagClear={handleTagClear} onTagSelect={handleTagSelect}/>
-                    <AppGrid appList={apps} tagHook={handleTagSelect}/>
+                    <AppGrid loading={loading} appList={apps} tagHook={handleTagSelect}/>
                 </div>
         );
     } 
