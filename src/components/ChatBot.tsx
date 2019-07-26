@@ -7,6 +7,7 @@ import ServerlessApp from '../interfaces/Interfaces';
 import { AppTile } from './AppTile';
 import { noop } from '@babel/types';
 import send from '../imgs/send.png';
+import {Markdown} from './Markdown';
 
 const ReactMarkdown = require('react-markdown/with-html');
 
@@ -149,8 +150,6 @@ export const ChatBot = (props : ChatProps) => {
         setMessage('');
     }
 
-    const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
-
     return (
 
         <div className="ks-chatbot">
@@ -166,7 +165,7 @@ export const ChatBot = (props : ChatProps) => {
                               (message.apps? " ks-chatbot__message__apps" : "")}
                             id={message.id == steps.length-1 ? "messagesEnd" : ''}
                         >
-                            <ReactMarkdown className="ks-markdown" renderers={{code : Code}} escapeHtml={(message.isUser)} source={message.text}/>
+                            <Markdown className="ks-markdown" escapeHtml={(message.isUser)} source={message.text}/>
                             {message.options ? (<div className="ks-chatbot__message__options"> {
                                 message.options.map((option : option) => {
                                     return (
