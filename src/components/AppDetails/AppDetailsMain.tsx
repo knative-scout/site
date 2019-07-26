@@ -1,7 +1,7 @@
 import React from 'react';
 import ServerlessApp from '../../interfaces/Interfaces';
 import { Gallery, GalleryItem, Title, Brand } from '@patternfly/react-core';
-import Markdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
 
 
 /**
@@ -15,7 +15,7 @@ export function AppDetailsMain (props : { app : ServerlessApp }) {
     return(
         <div className="ks-appdetails__main__content">
             {imageGallery(screenshots_urls,name)}
-            <Markdown className="ks-appdetails__main__content__description ks-markdown" source={description}></Markdown>
+            <ReactMarkdown className="ks-appdetails__main__content__description ks-markdown" source={description}></ReactMarkdown>
         </div>
     );
 }

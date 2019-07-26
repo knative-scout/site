@@ -1,7 +1,7 @@
 import React from 'react';
 import {Title, PageSection, Nav, NavList, NavItem} from '@patternfly/react-core';
 import {KSPage, wrapSection} from './KSPage';
-import Markdown from 'react-markdown';
+import {Markdown} from '../components/Markdown';
 
 /**
  * Type for one section of a documentation page
@@ -24,7 +24,7 @@ const toDocSection = (section : DocSection) => {
         <PageSection key={section.title} className="ks-docpage__section">
             <Title id={section.title} className="ks-docpage__section__title" size="2xl">{section.title}</Title>
             <div className="ks-docpage__section__text">
-                <Markdown>{section.text}</Markdown>
+                <Markdown source={section.text}></Markdown>
             </div>
         </PageSection>);
 }
@@ -71,7 +71,7 @@ const LMSections = [
     },
     {
         title: 'Get Started',
-        text: "To get started, go to your cluster and run this one line command:  \n```. <(curl -L https://api.kscout.io/apps/id/serverless-example-nodejs/deploy.sh)```  \nThis will install a simple NodeJS Hello-World serverless app, and get you started with serverless development."
+        text: "To get started, go to your cluster and run this one line command:  \n~~~~\n. <(curl -L https://api.kscout.io/apps/id/serverless-example-nodejs/deploy.sh)` \n~~~~ \nThis will install a simple NodeJS Hello-World serverless app, and get you started with serverless development."
     }
 ]
 
