@@ -6,6 +6,7 @@ import ServerlessApp from '../interfaces/Interfaces';
 
 interface AGProps {
     appList : ServerlessApp[],
+    loading ?: boolean,
     tagHook?: any
 }
 
@@ -37,7 +38,7 @@ export const AppGrid : React.FC<AGProps> = (props) => {
                 />
             </div>
             <div className="ks-appgrid__grid">
-                {props.appList == null || props.appList.length == 0? empty :
+                {props.appList == null || props.appList.length == 0? (props.loading ? loading : empty) :
                     props.appList.map( app => {
                         return (
                                 <AppTile key={app.app_id} app={app} tagHook={props.tagHook}></AppTile>
@@ -47,6 +48,14 @@ export const AppGrid : React.FC<AGProps> = (props) => {
         </div>
     );
 }
+
+const loading = (
+    <EmptyState>
+        <EmptyStateBody>
+            Loading...
+        </EmptyStateBody>
+    </EmptyState>
+)
 
 const empty = (
         <EmptyState>

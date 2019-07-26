@@ -11,19 +11,22 @@ const baseurl = "https://api.kscout.io"
 export function useAppById(appID : string) {
 
     const [appById,setAppById] = useState(null);
+    const [loading,setLoading] = useState(true);
 
     useEffect(
         function handleAppFetch(){
             fetch(baseurl + '/apps/id/' + appID)
                 .then( response =>
                     response.json()
-                        .then( data =>
-                            setAppById(data.app)
+                        .then( data => {
+                            setAppById(data.app);
+                            setLoading(false);
+                        }
                         )
                 )
     }, [appID]);
 
-    return appById;
+    return {loading: loading, app: appById};
 }
 
 /**
@@ -37,6 +40,7 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     const[appList,setAppList] = useState([]);
     const [categoryList,setCategoryList] = useState([]);
     const [tagList,setTagList] = useState([]);
+    const [loading,setLoading] = useState(true);
 
     useEffect(
         function handleAppListFetch(){
@@ -52,6 +56,7 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
                             setAppList(data.apps);
                             setCategoryList(data.categories);
                             setTagList(data.tags);
+                            setLoading(false);
                         })
                 )
     },[query,tags,categories]);
@@ -59,7 +64,8 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     return {
         apps: appList,
         categories: categoryList,
-        tags: tagList
+        tags: tagList,
+        loading: loading
     };
 }
 
