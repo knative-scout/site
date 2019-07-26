@@ -1192,6 +1192,13 @@
     exenv "^1.2.2"
     focus-trap-react "^4.0.1"
 
+"@patternfly/react-icons@^3.10.14":
+  version "3.10.14"
+  resolved "https://registry.yarnpkg.com/@patternfly/react-icons/-/react-icons-3.10.14.tgz#537a744dc4aa00ae27e0caafa737a967a930932e"
+  integrity sha512-LJIeaP6tv54Yr5/h4BMUem//tQADXhKJiV46Qhx2M+/k89Kr5cXYxRpXh7b2KBBqORybX/Wb/6EHixT7KI5ZaA==
+  dependencies:
+    "@fortawesome/free-brands-svg-icons" "^5.8.1"
+
 "@patternfly/react-icons@^3.9.3":
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/@patternfly/react-icons/-/react-icons-3.9.3.tgz#a06a589ef90472568a40a01491473e741e6a91a5"
