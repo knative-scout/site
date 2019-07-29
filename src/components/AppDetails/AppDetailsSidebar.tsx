@@ -14,7 +14,7 @@ interface DBProps {
 
 function getLabels(items : string[]) {
     return (items.map((item: string) => (
-	   <Label>
+	   <Label className="ks-appdetails__sidebar__label">
 		  {item}
 	   </Label>
     )))
