@@ -26,25 +26,6 @@ function getLabels(items : string[]) {
 export function AppDetailsSidebar (props : { app : ServerlessApp }) {
     const app = props.app;
 
-    /*
-       {name}
-       {tagline}
-
-       ----
-
-       [[deploy ]]
-
-       ----
-
-       [homepage]({homepage_url})
-       [deployment source]({github_url})
-
-       {author.name} <[mailto]({author.email})>
-
-       {tags}
-       {categories}
-    */
-
     return(<div>
 	   <Card className="ks-appdetails__sidebar__card">
 		  <CardHeader>
@@ -52,7 +33,6 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 		  </CardHeader>
 
 		  <CardBody>
-			 <h1>{app.name}</h1>
 			 <span>{app.tagline}</span>
 		  </CardBody>
 	   </Card>
@@ -77,6 +57,7 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 
 				<span>
 				    {app.author.name}
+				    &nbsp;
 				    <a href={'mailto:' + app.author.email}>
 					   <span>(<MdEmail />)</span>
 				    </a>
@@ -88,13 +69,13 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 				    Links
 				</div>
 
-				<a href="{app.homepage_url}">
+				<a href="{app.homepage_url}" target="_blank">
 				    <FaLink /> <span>Homepage URL</span>
 				</a>
 				
 				<br />
 				
-				<a href="{app.github_url}">
+				<a href="{app.github_url}" target="_blank">
 				    <FaLink /> <span>Source Code</span>
 				</a>
 			 </div>

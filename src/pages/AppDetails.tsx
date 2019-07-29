@@ -20,14 +20,13 @@ export const AppDetails : React.FC<ADProps> =  (props : ADProps) => {
     const app = useAppById(appid);
 
 
-
     const AppDetailsSection  = (
-
         app == null ? <div className="ks-appdetails__empty"> {empty(props.appid)}</div> : (
-            <Grid className="ks-appdetails__main">
+            <Grid className="ks-appdetails__main" gutter="md">
                 <GridItem span={8}>
                     <AppDetailsMain app={app}></AppDetailsMain>
                 </GridItem>
+			 
                 <GridItem span={4}>
                     <AppDetailsSidebar app={app}></AppDetailsSidebar>
                 </GridItem>

@@ -1,8 +1,7 @@
 import React from 'react';
 import ServerlessApp from '../../interfaces/Interfaces';
-import { Gallery, GalleryItem, Title, Brand } from '@patternfly/react-core';
+import { Gallery, GalleryItem, Title, Brand, Card, CardBody } from '@patternfly/react-core';
 import Markdown from 'react-markdown';
-
 
 /**
  * Display details about a serverless app.
@@ -11,10 +10,12 @@ export function AppDetailsMain (props : { app : ServerlessApp }) {
     const app = props.app;
 
     return(
-        <div className="ks-appdetails__main">
-            {imageGallery(app.screenshots_urls, app.name)}
-            <Markdown className="ks-appdetails__main__content__description ks-markdown" source={app.description}></Markdown>
-        </div>
+        <Card className="ks-appdetails__main">
+		  <CardBody className="ks-appdetails__main__content">
+			 {imageGallery(app.screenshots_urls, app.name)}
+			 <Markdown className="ks-appdetails__main__content__description ks-markdown" source={app.description}></Markdown>
+		  </CardBody>
+        </Card>
     );
 }
 
