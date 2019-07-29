@@ -5,33 +5,30 @@ import Markdown from 'react-markdown';
 
 
 /**
- * Main 
- * @param props.app ServerlessApp object  of app details to render
+ * Display details about a serverless app.
  */
 export function AppDetailsMain (props : { app : ServerlessApp }) {
-
-    const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app
+    const app = props.app;
 
     return(
-        <div className="ks-appdetails__main__content">
-            {imageGallery(screenshots_urls,name)}
-            <Markdown className="ks-appdetails__main__content__description ks-markdown" source={description}></Markdown>
+        <div className="ks-appdetails__main">
+            {imageGallery(app.screenshots_urls, app.name)}
+            <Markdown className="ks-appdetails__main__content__description ks-markdown" source={app.description}></Markdown>
         </div>
     );
 }
 
 export function AppDetailsHeader (props : { app : ServerlessApp }) {
-
-    const {app_id, name, version, author, logo_url, tagline, description, tags, maintainer, categories, verification_status, github_url, screenshots_urls, deployment_file_urls} = props.app
-
+    const app = props.app;
+    
     return(
         <div className="ks-header">
             <div className="ks-appdetails__header">
                 <div className="ks-appdetails__header__left">
-                    <Title size="4xl" className="ks-appdetails__header__title">{name}</Title>
-                    <span className="ks-appdetails__header__author">{ author? "By " + author.name : '' }</span>
+                    <Title size="4xl" className="ks-appdetails__header__title">{app.name}</Title>
+                    <span className="ks-appdetails__header__author">{ app.author? "By " + app.author.name : '' }</span>
                 </div>
-                <Brand className="ks-appdetails__header__logo" src={logo_url} alt={name}></Brand>
+                <Brand className="ks-appdetails__header__logo" src={app.logo_url} alt={app.name}></Brand>
             </div>
         </div>
     );
