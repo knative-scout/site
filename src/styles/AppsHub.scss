@@ -123,7 +123,8 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
       }
       
       &__input {
-      
+        position: absolute;
+        width: 50%;
 
         input {
           background-color: hsla(0,0%,100%,.2);
@@ -142,9 +143,9 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
 
         img {
           width: 15px;
-          left: -315px;
           position: relative;
-          top: 33px;
+          top: 30px;
+          left: 8px;
           width: 15px;
         }
       }
