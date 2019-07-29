@@ -128,13 +128,14 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
         max-width: 600px;
 
         input {
+		width: 100%;
+		line-height: 35px;  
+		padding-left: 38px;
+          display: block;
           background-color: hsla(0,0%,100%,.2);
           color: white;
           border: solid #E8F6F9;
           border-radius: 4px;
-          padding-left: 30px;
-          display: block;
-          width: 100%;
         }
 
         input::placeholder {
@@ -145,8 +146,8 @@ $ks-appgrid-width-4: $ks-cards-4 / ($ks-apphub-width/100%);
         img {
           width: 15px;
           position: relative;
-          top: 30px;
-          left: 8px;
+          top: 37px;
+          left: 15px;
           width: 15px;
         }
       }
