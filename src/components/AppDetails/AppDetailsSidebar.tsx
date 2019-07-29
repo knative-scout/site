@@ -5,7 +5,7 @@ import { FaLink } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import {Map2} from '../../utils/Utils';
 import { useDeployInstructions } from '../../hooks/Hooks';
-import Markdown from 'react-markdown';
+import {Markdown} from '../Markdown';
 
 
 interface DBProps {
@@ -124,7 +124,6 @@ const DeployButton : React.FunctionComponent<DBProps> = (props : DBProps) => {
 			 onClose={() => { setIsModalOpen(false); }}>
 		
 		<Markdown className="ks-markdown"
-			  renderers={{code : Code}}
 			  source={deployInstructions}/>
             </Modal>
 	</div>

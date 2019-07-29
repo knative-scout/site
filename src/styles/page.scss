@@ -1,5 +1,9 @@
+$ks-bground1 : #f03050;
+$ks-bground2 : #8952ff;
+
+
 .ks-topbar {
-    background: linear-gradient(to right, #820000, #a30000);
+    background: linear-gradient(to right, $ks-bground1, $ks-bground2);
     overflow: visible;
 
     &__brand {
@@ -33,8 +37,8 @@
 
 
 .ks-header {
-    background: linear-gradient(to right, #820000, #a30000);
-    background-image: url("./imgs/header-bg-new.png"), linear-gradient(to right, #820000, #a30000);
+    background: linear-gradient(to right, #1e90ff, #a30000);
+    background-image: url("./imgs/header-bg-new.png"), linear-gradient(to right,$ks-bground1,$ks-bground2);
     
     background-repeat: no-repeat;
     background-position-x: left;
@@ -46,4 +50,8 @@
     align-items: center;
     overflow-x: hidden;
     width: 100%;
+}
+
+.pf-c-page__header-nav {
+    background: rgba(0,0,0,0) !important;
 }
