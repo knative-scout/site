@@ -55,7 +55,7 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 
             <StackItem isFilled={false} className="ks-appdetails__sidebar__stackitem">
                 <span className="ks-appdetails__sidebar__stackitem__label">GitHub Repo</span>
-                <a href={github_url} className="ks-appdetails__sidebar__stackitem__content">Click Here</a>
+                <a target="_blank" href={github_url} className="ks-appdetails__sidebar__stackitem__content">Click Here</a>
             </StackItem>
         </Stack>
     );

@@ -15,7 +15,7 @@ export function AppDetailsMain (props : { app : ServerlessApp }) {
     return(
         <div className="ks-appdetails__main__content">
             {imageGallery(screenshots_urls,name)}
-            <ReactMarkdown className="ks-appdetails__main__content__description ks-markdown" source={description}></ReactMarkdown>
+            <ReactMarkdown className="ks-appdetails__main__content__description ks-markdown" linkTarget="_blank" source={description}></ReactMarkdown>
         </div>
     );
 }
