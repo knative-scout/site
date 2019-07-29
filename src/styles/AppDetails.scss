@@ -1,4 +1,12 @@
-.ks-appdetails {    
+.ks-appdetails {
+    &__main {
+	   margin: auto;
+
+	   &__content {
+		  max-width: 1000px;
+	   }
+    }
+    
     &__header {
         align-items: flex-start;
         display: flex;
@@ -36,6 +44,8 @@
 	   }
 
 	   &__card {
+		  width: 100%;
+		  max-width: 380px;
 		  margin-bottom: 15px;
 	   }
     }
