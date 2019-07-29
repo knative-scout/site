@@ -81,12 +81,12 @@ export function AppHub(props : {}) {
         <div className="ks-apphub-header ks-header">
             <div className="ks-apphub-header__search">
                 <label htmlFor="apphub-search">Discover and Share Serverless Apps</label>
-                <span className='ks-apphub-header__search__input'>
+                <div className='ks-apphub-header__search__input'>
                     <img src={searchicon} alt=""></img>
                     <input className="" id="apphub-search" 
                     placeholder="Search KScout..." 
                     onChange={handleSearchChange}></input>
-                </span>
+                </div>
             </div>
         </div>
     );
