@@ -8,33 +8,33 @@ import { AppHub } from './pages/AppHub';
 import { KSPage } from './pages/KSPage';
 import { AppDetails } from './pages/AppDetails';
 import { AppHubSidebar } from './components/AppHubSidebar';
-import {Main} from './pages/Main';
-import {LearnMore} from './pages/Documentation';
+import { Main } from './pages/Main';
+import { LearnMore } from './pages/Documentation';
 
 const App: React.FC = (props) => {
 
-  const history = createBrowserHistory();
+    const history = createBrowserHistory();
 
 
-  return (
-    <Router history={history}>
-      <Switch>
-        <Route path="/" exact component={Main}></Route>
-      </Switch>
-      <Switch>
-        <Route path="/apps" exact component={AppHub}></Route>
-      </Switch>
-      <Switch>
-        <Route path="/apps/:appid" component={AppDetails}></Route>
-      </Switch>
-      <Switch>
-        <Route path="/preview/:appid" component={Preview}></Route>
-      </Switch>
-      <Switch>
-        <Route path="/learn" component={LearnMore}></Route>
-      </Switch>
-    </Router>
-  );
+    return (
+	<Router history={history}>
+	    <Switch>
+		<Route path="/" exact component={Main}></Route>
+	    </Switch>
+	    <Switch>
+		<Route path="/apps" exact component={AppHub}></Route>
+	    </Switch>
+	    <Switch>
+		<Route path="/apps/:appid" component={AppDetails}></Route>
+	    </Switch>
+	    <Switch>
+		<Route path="/preview/:appid" component={Preview}></Route>
+	    </Switch>
+	    <Switch>
+		<Route path="/learn" component={LearnMore}></Route>
+	    </Switch>
+	</Router>
+    );
 }
 
 export default App;

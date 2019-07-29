@@ -3,7 +3,7 @@ import { useAppById } from '../hooks/Hooks';
 import { AppTile } from '../components/AppTile';
 import { AppDetailsMain, AppDetailsHeader} from '../components/AppDetails/AppDetailsMain';
 import { AppDetailsSidebar } from '../components/AppDetails/AppDetailsSidebar';
-import { PageSection, Page, EmptyState, Grid, GridItem, Title, Brand, EmptyStateBody} from '@patternfly/react-core';
+import { PageSection, Page, EmptyState, Grid, GridItem, Title, Brand, EmptyStateBody, Bullseye } from '@patternfly/react-core';
 import { KSPage } from './KSPage';
 import { tsPropertySignature } from '@babel/types';
 
@@ -28,19 +28,20 @@ export const AppDetails : React.FC<ADProps> =  (props : ADProps) => {
         <EmptyState><EmptyStateBody>Loading...</EmptyStateBody></EmptyState>
     );
 
-
     const AppDetailsSection  = (
-
         app ?
-          (
-            <Grid className="ks-appdetails__main">
+        (
+		  <Bullseye>
+            <Grid className="ks-appdetails__main" gutter="md">
                 <GridItem span={8}>
                     <AppDetailsMain app={app}></AppDetailsMain>
                 </GridItem>
+			 
                 <GridItem span={4}>
                     <AppDetailsSidebar app={app}></AppDetailsSidebar>
                 </GridItem>
             </Grid>
+		  </Bullseye>
             ) : (<div className="ks-appdetails__empty"> 
             {loading ? loadingScreen : empty}
         </div>)
