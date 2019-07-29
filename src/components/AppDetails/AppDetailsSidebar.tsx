@@ -44,10 +44,7 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 	   </Card>
 	   
 	   <Card className="ks-appdetails__sidebar__card">
-		  <CardHeader>
-			 Details
-		  </CardHeader>
-		  
+
 		  <CardBody>
 			 <div id="ks-appdetails__sidebar__first_section"
 				 className="ks-appdetails__sidebar__section">
