@@ -14,7 +14,7 @@ export const Markdown = (props : MProps) => {
     const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
 
     return (
-        <ReactMarkdown className={"ks-markdown " + props.className} renderers={{code : Code}} escapeHtml={props.escapeHtml} source={props.source}/>
+        <ReactMarkdown className={"ks-markdown " + props.className} renderers={{code : Code}} escapeHtml={props.escapeHtml} linkTarget="_blank" source={props.source}/>
     );
 
 

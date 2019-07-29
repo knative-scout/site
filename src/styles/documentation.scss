@@ -14,15 +14,16 @@
     }
 }
 .ks-markdown {
+    a {
+        cursor: pointer;
+    }
     a:link {
         color: (internal value);
         text-decoration: underline;
-        cursor: auto;
     }
     a:visited {
         color: (internal value);
         text-decoration: underline;
-        cursor: auto;
     }
     a:link:active {
         color: (internal value);
