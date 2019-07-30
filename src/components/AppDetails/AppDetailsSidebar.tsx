@@ -32,20 +32,20 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 			 {app.name}
 		  </CardHeader>
 
-		  <CardBody>
+		  <CardBody className="ks-appdetails__sidebar__card__body">
 			 <span>{app.tagline}</span>
 		  </CardBody>
 	   </Card>
 
 	   <Card className="ks-appdetails__sidebar__card">
-		  <CardBody>
+		  <CardBody className="ks-appdetails__sidebar__card__body">
 			 <DeployButton appID={app.app_id} />
 		  </CardBody>
 	   </Card>
 	   
 	   <Card className="ks-appdetails__sidebar__card">
 
-		  <CardBody>
+		  <CardBody className="ks-appdetails__sidebar__card__body">
 			 <div id="ks-appdetails__sidebar__first_section"
 				 className="ks-appdetails__sidebar__section">
 				<div className="ks-appdetails__sidebar__section__title">
@@ -66,14 +66,14 @@ export function AppDetailsSidebar (props : { app : ServerlessApp }) {
 				    Links
 				</div>
 
-				<a href="{app.homepage_url}" target="_blank">
+				<a href={app.homepage_url} target="_blank">
 				    <FaLink /> <span>Homepage URL</span>
 				</a>
 				
 				<br />
 				
-				<a href="{app.github_url}" target="_blank">
-				    <FaLink /> <span>Source Code</span>
+				<a href={app.github_url} target="_blank">
+				    <FaLink /> <span>Deploy Source Code</span>
 				</a>
 			 </div>
 			 <div className="ks-appdetails__sidebar__section">

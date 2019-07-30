@@ -2,21 +2,21 @@
  * Type representing all info of a single serverless app.
  */
 export default interface ServerlessApp {
-    app_id: string;
     name: string;
-    version: string;
-    author: {
-        name : string,
-        email : string
-    };
+    homepage_url: string;
     tagline: string;
-    logo_url: string;
-    description: string;
     tags: string[];
-    maintainer: string;
     categories: string[];
-    verification_status: string[];
+    author: {
+	   name: string,
+	   email: string
+    };
+    app_id: string;
+    description: string;
+    screenshot_urls: string[];
+    logo_url: string;
+    verification_status: string;
     github_url: string;
-    screenshots_urls: string[];
-    deployment_file_urls: string[];
+    version: string;
+    site_url: string;
 }
