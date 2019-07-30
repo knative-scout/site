@@ -13,14 +13,14 @@ export function Map2 (a : any[], b : any[], f : ((a :any, b :any) => any)) {
     return ret;
 }
 
-export function PrintArray(arr : any[], delimiter : string) : string{
+export function PrintArray(arr : any[], delimiter : string, mapFn ?: ((s : string) => string)) : string{
     if(arr.length == 0){
         return '';
     }
 
-    var ret = arr[0];
+    var ret = mapFn? mapFn(arr[0]) : arr[0];
     for(var i=1;i<arr.length;i++){
-        ret += delimiter + arr[i];
+        ret += delimiter + (mapFn ? mapFn(arr[i]) : arr[i]);
     }
 
     return ret;
