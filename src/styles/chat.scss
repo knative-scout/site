@@ -1,11 +1,13 @@
 $ks-chatbot-height: 500px;
+$ks-user-color: #d1edf4;
+$ks-bot-color: #f77c93;
 
 .ks-chatbot {
     height: $ks-chatbot-height;
     width: 350px;
     background-color: white;
     
-    border: 1px solid black;
+    border: 1px solid gray;
     position: relative;
     z-index: 10;
     resize: both;
@@ -20,12 +22,12 @@ $ks-chatbot-height: 500px;
         overflow-y: auto;
         height: $ks-chatbot-height - 60;
         max-height: $ks-chatbot-height - 40;
-
+	   padding: 10px;
     }
 
     &__message {
         border: 1px solid black;
-        border-radius: 10px;
+        border-radius: 3px;
         margin-bottom: 5px;
         margin-top: 5px;
         width: max-content;
@@ -39,7 +41,7 @@ $ks-chatbot-height: 500px;
             margin-left: auto;
             margin-right: 5px;
             border: 1px solid black;
-            background-color: #d1edf4;
+            background-color: $ks-user-color;
         }
 
         &__bot {
@@ -48,7 +50,7 @@ $ks-chatbot-height: 500px;
             border: 1px solid black;
             margin-right: auto;
             margin-left: 5px;
-            background-color: #e2daec;
+            background-color: $ks-bot-color;
         }
 
         &__apps {
@@ -70,7 +72,7 @@ $ks-chatbot-height: 500px;
         }
     }
 
-    &__input {
+    &__input { 
         position: absolute;
         bottom: 0%;
         right: 0%;
@@ -91,8 +93,11 @@ $ks-chatbot-height: 500px;
     }
 
     &__sendbutton {
-        padding-bottom: 0px !important;
-        padding-left: 10px !important;
-        padding-right: 8px !important;
+	   border-right: none;
+	   border-top: none;
+	   border-bottom: none;
+	   border-left: solid 1px black;
+
+	   background: none;
     }
 }

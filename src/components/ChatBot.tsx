@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Component} from 'react';
 import { useSessionID } from '../hooks/Hooks';
-import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem } from '@patternfly/react-core';
+import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem, Bullseye } from '@patternfly/react-core';
 import { truncateSync } from 'fs';
 import _ from 'lodash';
 import ServerlessApp from '../interfaces/Interfaces';
@@ -108,7 +108,7 @@ export const ChatBot = (props : ChatProps) => {
     });
 
     const sendMessage = (text :string) => {
-
+	   console.log("sendmessagecalled")
         if(text == ''){
             return;
         }
@@ -137,8 +137,12 @@ export const ChatBot = (props : ChatProps) => {
                 }));
     }
 
-    const m = storedSteps ? '' : 'Hi Scout!';
+    const m = '';
     const [message,setMessage] = useState(m);
+
+    if (!storedSteps) {
+	   sendMessage("Hey KScout!");
+    }
 
     const handleTextChange = (text : any) => {
         setMessage(text);
@@ -189,8 +193,18 @@ export const ChatBot = (props : ChatProps) => {
             </Stack>
             <Form className="ks-chatbot__input" onSubmit={handleSubmit}>
                 <InputGroup>
-                    <TextInput value={message} onChange={handleTextChange} id="chatbot-input"/>
-                    <Button className="ks-chatbot__sendbutton" type='submit' variant={ButtonVariant.tertiary}><img className="ks-chatbot__sendicon" src={send} alt="send"/></Button>
+                    <TextInput value={message}
+					  onChange={handleTextChange}
+					  id="chatbot-input"
+				       required />
+                    <button className="ks-chatbot__sendbutton"
+					   type='submit'>
+				    <Bullseye>
+					   <img className="ks-chatbot__sendicon"
+						   src={send}
+						   alt="send"/>
+				    </Bullseye>
+				</button>
                 </InputGroup>
             </Form>
 
