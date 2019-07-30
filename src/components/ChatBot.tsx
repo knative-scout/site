@@ -1,6 +1,7 @@
 import React, {useState, useEffect, Component} from 'react';
 import { useSessionID } from '../hooks/Hooks';
 import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem, Bullseye } from '@patternfly/react-core';
+import { Widget, addResponseMessage } from 'react-chat-widget';
 import { truncateSync } from 'fs';
 import _ from 'lodash';
 import ServerlessApp from '../interfaces/Interfaces';
@@ -8,6 +9,8 @@ import { AppTile } from './AppTile';
 import { noop } from '@babel/types';
 import send from '../imgs/send.png';
 import {Markdown} from './Markdown';
+
+import 'react-chat-widget/lib/styles.css';
 
 const ReactMarkdown = require('react-markdown/with-html');
 
