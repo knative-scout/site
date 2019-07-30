@@ -12,7 +12,6 @@ export function AppDetailsMain (props : { app : ServerlessApp }) {
     return(
         <Card className="ks-appdetails__main">
 		  <CardBody className="ks-appdetails__main__content">
-			 {imageGallery(app.screenshot_urls, app.name)}
 			 <Markdown className="ks-appdetails__main__content__description ks-markdown" source={app.description}></Markdown>
 		  </CardBody>
         </Card>
