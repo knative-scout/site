@@ -114,11 +114,19 @@ export function AppHub(props : {}) {
      */
     const AppHubMain : React.FC<{}> = ( props : {} ) => {
         return(
-                <div className="ks-apphub">
-                    <AppHubSidebar tags={tagList} selectedTags={tags} allCategories={allCategoryList} currentCategories={currentCategoryList} selectedCategories={categories}
-                    onCategorySelect={categoryHandlerFunctor} onTagClear={handleTagClear} onTagSelect={handleTagSelect}/>
-                    <AppGrid loading={loading} appList={apps} tagHook={handleTagSelect}/>
-                </div>
+            <div className="ks-apphub">
+                <AppHubSidebar tags={tagList}
+				           selectedTags={tags}
+						 allCategories={allCategoryList}
+						 currentCategories={currentCategoryList}
+						 selectedCategories={categories}
+						 onCategorySelect={categoryHandlerFunctor}
+						 onTagClear={handleTagClear}
+						 onTagSelect={handleTagSelect} />
+                <AppGrid loading={loading}
+					appList={apps}
+					tagHook={handleTagSelect} />
+            </div>
         );
     } 
 

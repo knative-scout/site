@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Stack, Select, StackItem, SelectVariant, SelectOption, PageSidebar, Checkbox } from '@patternfly/react-core';
+import { Card, CardHeader, CardBody, Stack, Select, StackItem, SelectVariant, SelectOption, PageSidebar, Checkbox } from '@patternfly/react-core';
 import searchicon from '../imgs/Interface_icon_search_magnifying_glass_white.png';
 import { getEnabledCategories } from 'trace_events';
 
@@ -14,21 +14,40 @@ import { getEnabledCategories } from 'trace_events';
  * @param props.onTagClear function to propogate tag clear event upwards and update filters.
  * @param props.onCategorySelect functor to provide key-tied functions to propogate category selection events upwards.
  */
-export function AppHubSidebar(props: {allCategories: Category[], currentCategories: string[], selectedCategories : string[], tags: string[], selectedTags : string[], onTagSelect : any, 
-    onTagClear : any, onCategorySelect :(key : string)  => ((event : any) => any)}){
+export function AppHubSidebar(props: {
+    allCategories: Category[],
+    currentCategories: string[],
+    selectedCategories: string[],
+    tags: string[],
+    selectedTags: string[],
+    onTagSelect: any,
+    onTagClear: any,
+    onCategorySelect:(key: string)  => ((event: any) => any)
+}) {
     return(
-            <Stack className="ks-apphub-sidebar" >
-                <StackItem isFilled={false}>
-                    <span className="ks-apphub-sidebar__heading">Categories</span>
-                </StackItem>
-                <StackItem isFilled={false}>
-                    <CategorySelect selected={props.selectedCategories} allCategories={props.allCategories} currentCategories={props.currentCategories} onChange={props.onCategorySelect}></CategorySelect>
-                </StackItem>
-                <StackItem isFilled={false}>
-                    <label htmlFor="tagselect" className="ks-apphub-sidebar__heading">Tags</label>
-                    <TagSelect tags={props.tags} selected={props.selectedTags} onTagSelect={props.onTagSelect} onTagClear={props.onTagClear}></TagSelect>
-                </StackItem>
-           </Stack>
+	   <div>
+		  <Card>
+			 <CardHeader>Categories</CardHeader>
+			 <CardBody>
+				<CategorySelect selected={props.selectedCategories}
+							 allCategories={props.allCategories}
+							 currentCategories={props.currentCategories}
+							 onChange={props.onCategorySelect}>
+				</CategorySelect>
+			 </CardBody>
+		  </Card>
+
+		  <Card>
+			 <CardHeader>Tags</CardHeader>
+			 <CardBody>
+				<TagSelect tags={props.tags}
+						 selected={props.selectedTags}
+						 onTagSelect={props.onTagSelect}
+						 onTagClear={props.onTagClear}>
+				</TagSelect>
+			 </CardBody>
+		  </Card>
+	   </div>
     );
     
 }
@@ -38,7 +57,12 @@ interface Category {
     value: string
 }
 
-function CategorySelect(props: {allCategories :Category[], currentCategories :string[],selected : string[], onChange : (key : string)  => ((event : any) => any) }){
+function CategorySelect(props: {
+    allCategories: Category[],
+    currentCategories: string[],
+    selected: string[],
+    onChange: (key : string) => ((event : any) => any)
+}){
 
     return (<div className="ks-apphub-sidebar__catselect">
         {props.allCategories.length == 0? (<em>No categories found</em>) : (props.allCategories.map( category => {
