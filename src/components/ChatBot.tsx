@@ -6,7 +6,7 @@ import _ from 'lodash';
 import ServerlessApp from '../interfaces/Interfaces';
 import { AppTile } from './AppTile';
 import { noop } from '@babel/types';
-import send from '../imgs/send.png';
+import {OutlinedPaperPlaneIcon, TimesIcon} from '@patternfly/react-icons';
 import {Markdown} from './Markdown';
 
 const ReactMarkdown = require('react-markdown/with-html');
@@ -25,6 +25,7 @@ interface ChatMessage {
 }
 
 interface ChatProps {
+    onCloseChat : ((e ?: any) => void)
 }
 
 export const ChatBot = (props : ChatProps) => {
@@ -153,6 +154,7 @@ export const ChatBot = (props : ChatProps) => {
     return (
 
         <div className="ks-chatbot">
+            <TimesIcon className="ks-chatbot__close" onClick={() => props.onCloseChat()}/>
             <Stack className="ks-chatbot__messages">
                 {steps.map((message : ChatMessage) => {
                     return (
@@ -189,8 +191,8 @@ export const ChatBot = (props : ChatProps) => {
             </Stack>
             <Form className="ks-chatbot__input" onSubmit={handleSubmit}>
                 <InputGroup>
-                    <TextInput value={message} onChange={handleTextChange} id="chatbot-input"/>
-                    <Button className="ks-chatbot__sendbutton" type='submit' variant={ButtonVariant.tertiary}><img className="ks-chatbot__sendicon" src={send} alt="send"/></Button>
+                    <TextInput value={message} onChange={handleTextChange} placeholder="Type your message here..." id="chatbot-input"/>
+                    <Button className="ks-chatbot__sendbutton" type='submit' variant={ButtonVariant.tertiary}><OutlinedPaperPlaneIcon className="ks-chatbot__sendicon" alt="send"/></Button>
                 </InputGroup>
             </Form>
 
