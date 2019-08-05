@@ -13,10 +13,14 @@ $ks-chatbot-height: 500px;
     &__close {
         position: absolute;
         right: 0px;
-        top: 2px;
+        top: 0px;
+        scale: 120%;
+        width: 20px;
+        height: 20px;
         color: black;
-        display: inline;
+        display: inline-block;
         cursor: pointer;
+        background: white; 
     }
 
     &__header {
