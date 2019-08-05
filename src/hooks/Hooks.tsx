@@ -15,7 +15,7 @@ export function useAppById(appID : string) {
 
     useEffect(
         function handleAppFetch(){
-            fetch(baseurl + '/apps/id/' + appID)
+            fetch(encodeURI(baseurl + '/apps/id/' + appID))
                 .then( response =>
                     response.json()
                         .then( data => {
@@ -45,8 +45,8 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     useEffect(
         function handleAppListFetch(){
             const squery = '?query=' + query;
-            const stags = tags != undefined ? "&tags=" + PrintArray(tags,',') : '';
-            const scats = categories != undefined ? "&categories=" + PrintArray(categories,",") : '';
+            const stags = tags != undefined ? "&tags=" + PrintArray(tags,',',encodeURIComponent) : '';
+            const scats = categories != undefined ? "&categories=" + PrintArray(categories,",",encodeURIComponent) : '';
             var request = baseurl + '/apps' + squery + stags + scats;
             console.log(request);
             fetch(request)
@@ -75,7 +75,7 @@ export function useDeployInstructions(appID : string) {
 
     useEffect(
         function handleAppFetch(){
-            fetch(baseurl + '/apps/id/' + appID + '/deployment-instructions')
+            fetch(encodeURI(baseurl + '/apps/id/' + appID + '/deployment-instructions'))
                 .then( response =>
                     response.json()
                         .then( data =>
