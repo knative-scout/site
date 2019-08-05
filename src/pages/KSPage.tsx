@@ -58,12 +58,12 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
     const [isChatOpen,setIsChatOpen] = useState(false);
     const ChatPop = (
         <div className="ks-topbar__chat">
-            <Button onClick={() => setIsChatOpen(!isChatOpen)} className="ks-topbar__chat__button" variant="tertiary">
+            <Button onClick={() => setIsChatOpen(!isChatOpen)} variant="secondary">
                 Scout Chat
             </Button>
             {isChatOpen? 
              <div className="ks-topbar__chat__window">
-                 <ChatBot onCloseChat={() => setIsChatOpen(false)}/>
+                 <ChatBot/>
              </div> : ''
             }
         </div>
