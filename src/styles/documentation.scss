@@ -188,16 +188,25 @@
     }
 
     .pf-c-clipboard-copy__group {
-        background-color: white !important;
-        color: black !important;
+        background: black !important;
+        color: white !important;
+
+        &-toggle {
+            color: white !important;
+        }
+
+        &-copy {
+            color: white !important;
+        }
     }
 
     .pf-c-form-control {
-        background-color: white !important;
-        color: black !important;
+        background-color: black !important;
+        color: white !important;
     }
 
     .pf-c-clipboard-copy__expandable-content {
-        color: black !important;
+        color: white !important;
+        background-color: black !important;
     }
 }
