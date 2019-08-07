@@ -14,15 +14,16 @@
     }
 }
 .ks-markdown {
+    a {
+        cursor: pointer;
+    }
     a:link {
         color: (internal value);
         text-decoration: underline;
-        cursor: auto;
     }
     a:visited {
         color: (internal value);
         text-decoration: underline;
-        cursor: auto;
     }
     a:link:active {
         color: (internal value);
@@ -184,5 +185,28 @@
         margin-left: 0;
         margin-right: 0;
         padding-left: 40px;
+    }
+
+    .pf-c-clipboard-copy__group {
+        background: black !important;
+        color: white !important;
+
+        &-toggle {
+            color: white !important;
+        }
+
+        &-copy {
+            color: white !important;
+        }
+    }
+
+    .pf-c-form-control {
+        background-color: black !important;
+        color: white !important;
+    }
+
+    .pf-c-clipboard-copy__expandable-content {
+        color: white !important;
+        background-color: black !important;
     }
 }

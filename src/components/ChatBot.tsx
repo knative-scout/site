@@ -7,6 +7,7 @@ import ServerlessApp from '../interfaces/Interfaces';
 import { AppTile } from './AppTile';
 import { noop } from '@babel/types';
 import send from '../imgs/send.png';
+import {Markdown} from './Markdown';
 
 const ReactMarkdown = require('react-markdown/with-html');
 
@@ -45,7 +46,7 @@ export const ChatBot = (props : ChatProps) => {
         sessionStorage.setItem('steps',JSON.stringify(newSteps));
     }
 
-
+   
     const addStep = (text : string, isUser : boolean, options?: option[], apps?: ServerlessApp[]) =>{
 
         setSteps(steps => {
@@ -136,7 +137,8 @@ export const ChatBot = (props : ChatProps) => {
                 }));
     }
 
-    const [message,setMessage] = useState('');
+    const m = storedSteps ? '' : 'Hi Scout!';
+    const [message,setMessage] = useState(m);
 
     const handleTextChange = (text : any) => {
         setMessage(text);
@@ -148,8 +150,6 @@ export const ChatBot = (props : ChatProps) => {
         setMessage('');
     }
 
-    const Code = ((props : any) => <ClipboardCopy variant={ClipboardCopyVariant.expansion} isReadOnly>{props.value}</ClipboardCopy>);
-    
     return (
 
         <div className="ks-chatbot">
@@ -160,11 +160,12 @@ export const ChatBot = (props : ChatProps) => {
                             isFilled={false} 
                             key={message.id}
                             className={
-                                message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
-                                "ks-chatbot__message ks-chatbot__message__bot"}
+                              (message.isUser ? "ks-chatbot__message ks-chatbot__message__user" : 
+                              "ks-chatbot__message ks-chatbot__message__bot") + 
+                              (message.apps? " ks-chatbot__message__apps" : "")}
                             id={message.id == steps.length-1 ? "messagesEnd" : ''}
                         >
-                            <ReactMarkdown className="ks-markdown" renderers={{code : Code}} escapeHtml={(message.isUser)} source={message.text}/>
+                            <Markdown className="ks-markdown" escapeHtml={(message.isUser)} source={message.text}/>
                             {message.options ? (<div className="ks-chatbot__message__options"> {
                                 message.options.map((option : option) => {
                                     return (
@@ -174,7 +175,7 @@ export const ChatBot = (props : ChatProps) => {
                             message.apps ? message.apps.map((app : ServerlessApp) => {
                                 return (
                                     <div>
-                                        <AppTile className="ks-chatbot__apptile" app={app}/>
+                                        <AppTile maxFont={17} className="ks-chatbot__apptile" app={app}/>
                                         <Button className="ks-chatbot__message__options__button" 
                                             variant="tertiary" 
                                             onClick={(e) => sendMessage(app.app_id)}><div>{"Deploy " + app.app_id}</div></Button>

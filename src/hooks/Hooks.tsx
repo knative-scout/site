@@ -11,19 +11,22 @@ const baseurl = "https://api.kscout.io"
 export function useAppById(appID : string) {
 
     const [appById,setAppById] = useState(null);
+    const [loading,setLoading] = useState(true);
 
     useEffect(
         function handleAppFetch(){
-            fetch(baseurl + '/apps/id/' + appID)
+            fetch(encodeURI(baseurl + '/apps/id/' + appID))
                 .then( response =>
                     response.json()
-                        .then( data =>
-                            setAppById(data.app)
+                        .then( data => {
+                            setAppById(data.app);
+                            setLoading(false);
+                        }
                         )
                 )
     }, [appID]);
 
-    return appById;
+    return {loading: loading, app: appById};
 }
 
 /**
@@ -37,12 +40,13 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     const[appList,setAppList] = useState([]);
     const [categoryList,setCategoryList] = useState([]);
     const [tagList,setTagList] = useState([]);
+    const [loading,setLoading] = useState(true);
 
     useEffect(
         function handleAppListFetch(){
             const squery = '?query=' + query;
-            const stags = tags != undefined ? "&tags=" + PrintArray(tags,',') : '';
-            const scats = categories != undefined ? "&categories=" + PrintArray(categories,",") : '';
+            const stags = tags != undefined ? "&tags=" + PrintArray(tags,',',encodeURIComponent) : '';
+            const scats = categories != undefined ? "&categories=" + PrintArray(categories,",",encodeURIComponent) : '';
             var request = baseurl + '/apps' + squery + stags + scats;
             console.log(request);
             fetch(request)
@@ -52,6 +56,7 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
                             setAppList(data.apps);
                             setCategoryList(data.categories);
                             setTagList(data.tags);
+                            setLoading(false);
                         })
                 )
     },[query,tags,categories]);
@@ -59,7 +64,8 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     return {
         apps: appList,
         categories: categoryList,
-        tags: tagList
+        tags: tagList,
+        loading: loading
     };
 }
 
@@ -69,7 +75,7 @@ export function useDeployInstructions(appID : string) {
 
     useEffect(
         function handleAppFetch(){
-            fetch(baseurl + '/apps/id/' + appID + '/deployment-instructions')
+            fetch(encodeURI(baseurl + '/apps/id/' + appID + '/deployment-instructions'))
                 .then( response =>
                     response.json()
                         .then( data =>

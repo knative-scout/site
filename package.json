@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@patternfly/react-core": "^3.34.2",
+    "@patternfly/react-icons": "^3.10.14",
     "@patternfly/react-styles": "^3.2.3",
     "@patternfly/react-table": "^2.11.1",
     "@types/jest": "24.0.13",
@@ -20,9 +21,11 @@
     "react-chat-widget": "^2.1.4-1",
     "react-dom": "^16.8.6",
     "react-draggable": "^3.3.0",
+    "react-icons": "^3.7.0",
     "react-markdown": "^4.0.8",
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
+    "react-textfit": "^1.1.0",
     "tslint": "^5.17.0",
     "tslint-react-hooks": "^2.1.1",
     "typescript": "3.5.1"

@@ -33,18 +33,17 @@ export const wrapSection  = (section : any, props?: {isFilled ?: boolean, noPadd
  * @param props.sidebar content to render within page sidebar
  */
 export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
-
-    const brand = <Brand src={Scout_Cloud2} alt="KScout.io"></Brand>
+    const brand = <Brand className="ks-topbar__brand" src={Scout_Cloud2} alt="KScout.io" />;
 
     const logoProps = {
-        src: Scout_Cloud2, 
-        href: "/"
+        src: Scout_Cloud2,
+	href: "/",
     }
 
     const NavBar = ( <Nav className="ks-topbar__nav">
         <NavList variant={NavVariants.horizontal}>
-            <NavItem className="ks-topbar__nav__item ks-topbar__nav__title">
-                <Link to="/">KScout.io</Link>
+	    <NavItem className="ks-topbar__nav__item">
+                <Link to="/">Home</Link>
             </NavItem>
             <NavItem className="ks-topbar__nav__item">
                 <Link to="/apps">Apps</Link>
@@ -62,9 +61,9 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
                 Scout Chat
             </Button>
             {isChatOpen? 
-                <div className="ks-topbar__chat__window">
-                    <ChatBot/>
-                </div> : ''
+             <div className="ks-topbar__chat__window">
+                 <ChatBot/>
+             </div> : ''
             }
         </div>
     );
@@ -93,7 +92,7 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
 
     return (
         <Page header={Header}
-            sidebar={props.sidebar}
+              sidebar={props.sidebar}
         >
 
             <PageSection isFilled={false} variant='dark'>
@@ -105,13 +104,13 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
             </PageSection>
             
             {props.components.map((c,index) => {
-            return (
-                <PageSection key={index} isFilled={c.isFilled} noPadding={c.noPadding} children={c.component}/>
-            )})}
+		return (
+                    <PageSection key={index} isFilled={c.isFilled} noPadding={c.noPadding} children={c.component}/>
+		)})}
 
             {Footer}
             
-    
+	    
         </Page>
     );
 }
