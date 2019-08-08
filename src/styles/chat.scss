@@ -9,17 +9,30 @@ $ks-chatbot-height: 500px;
     position: relative;
     z-index: 10;
     resize: both;
+  
+    &__close {
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        scale: 120%;
+        width: 20px;
+        height: 20px;
+        color: white;
+        display: inline-block;
+        cursor: pointer;
+    }
 
     &__header {
-        background-color: #ee0000;
+        background-color: #C65495;
         color: white;
+        height: 30px;
     }
 
     &__messages {
         overflow-x: hidden;
         overflow-y: auto;
-        height: $ks-chatbot-height - 60;
-        max-height: $ks-chatbot-height - 40;
+        height: $ks-chatbot-height - 90;
+        max-height: $ks-chatbot-height - 70;
 
     }
 

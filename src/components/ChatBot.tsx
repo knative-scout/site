@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Component} from 'react';
 import { useSessionID } from '../hooks/Hooks';
-import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem } from '@patternfly/react-core';
+import { TextInput, ClipboardCopy, ClipboardCopyVariant, InputGroup, Button, ButtonVariant, Form, Stack, StackItem, Bullseye } from '@patternfly/react-core';
 import { truncateSync } from 'fs';
 import _ from 'lodash';
 import ServerlessApp from '../interfaces/Interfaces';
@@ -153,6 +153,10 @@ export const ChatBot = (props : ChatProps) => {
     return (
 
         <div className="ks-chatbot">
+            <div className="ks-chatbot__header" onDoubleClick={() => props.onCloseChat()}>
+                <Bullseye>Scout Chat</Bullseye>
+                <TimesIcon className="ks-chatbot__close" onClick={() => props.onCloseChat()}/>
+            </div>
             <Stack className="ks-chatbot__messages">
                 {steps.map((message : ChatMessage) => {
                     return (
