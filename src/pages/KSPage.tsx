@@ -1,5 +1,5 @@
 import React, { useState, Component, FunctionComponent } from 'react';
-import { Brand, Modal, Card, Page, PageHeader, PageSection, Nav, NavVariants, NavList, NavItem, Popover, Button} from '@patternfly/react-core';
+import { Bullseye, Brand, Modal, Card, Page, PageHeader, PageSection, Nav, NavVariants, NavList, NavItem, Popover, Button} from '@patternfly/react-core';
 import Scout_Cloud2 from '../imgs/Scout_Cloud2.png';
 import {Link} from 'react-router-dom';
 import { ChatBot } from '../components/ChatBot';
@@ -58,13 +58,14 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
     const [isChatOpen,setIsChatOpen] = useState(false);
     const ChatPop = (
         <div className="ks-topbar__chat">
-            <Button onClick={() => setIsChatOpen(!isChatOpen)} className="ks-topbar__chat__button" variant="tertiary">
-                Scout Chat
-            </Button>
             {isChatOpen? 
              <div className="ks-topbar__chat__window">
                  <ChatBot onCloseChat={() => setIsChatOpen(false)}/>
-             </div> : ''
+             </div> : 
+
+             <Button onClick={() => setIsChatOpen(!isChatOpen)} className="ks-topbar__chat__button" variant="tertiary">
+                Scout Chat
+            </Button>
             }
         </div>
     );
