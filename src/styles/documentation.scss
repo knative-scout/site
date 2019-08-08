@@ -188,7 +188,16 @@
     }
 
     .pf-c-clipboard-copy__group {
-        color: black !important;
+        background: black !important;
+        color: white !important;
+
+        &-toggle {
+            color: white !important;
+        }
+
+        &-copy {
+            color: white !important;
+        }
     }
 
     .pf-c-form-control {
