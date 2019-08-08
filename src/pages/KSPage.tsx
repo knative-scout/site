@@ -3,7 +3,6 @@ import { Brand, Modal, Card, Page, PageHeader, PageSection, Nav, NavVariants, Na
 import Scout_Cloud2 from '../imgs/Scout_Cloud2.png';
 import {Link} from 'react-router-dom';
 import { ChatBot } from '../components/ChatBot';
-import Draggable from 'react-draggable';
 
 
 interface KSPProps { components : KSPSection[], sidebar?: any};
@@ -82,8 +81,11 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         <PageSection isFilled={false} className="ks-footer" variant="dark">
             <div className="ks-footer-content">
                 KScout.io is a smart hub for serverless applications, currently
-                in development by a team at Red Hat.
-                <a href="https://github.com/kscout">View our repositories and contribute serverless apps here.</a>
+                in development by a team at Red Hat. <br/>
+                <a href="https://github.com/kscout">View our repositories and contribute serverless apps here.</a> <br/>
+                <a href="http://bit.ly/kscouthack">
+                    Sign up for our Knative Hackathon Here!
+                </a>
             </div> 
         </PageSection>
     )
@@ -92,6 +94,14 @@ export const KSPage : React.FunctionComponent<KSPProps> = (props: KSPProps) => {
         <Page header={Header}
               sidebar={props.sidebar}
         >
+
+            <PageSection isFilled={false} variant='dark'>
+                <a href="http://bit.ly/kscouthack">
+                <strong>
+                    Sign up for our Knative Hackathon Here! ->
+                </strong>
+                </a>
+            </PageSection>
             
             {props.components.map((c,index) => {
 		return (
