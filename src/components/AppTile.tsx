@@ -23,7 +23,7 @@ function getTagStrings(tags : string[], tagHook?: any) {
     var i = 0;
     return (tags.map((tag : string)=> ( i++ <= 3 ? 
       <SplitItem isFilled={false}>
-        <Label key={tag} className="ks-card__footer__tag" onClick={handleClickFunctor(tag)}>
+        <Label key={tag} className="ks-card__footer__tag" onClick={tagHook? handleClickFunctor(tag) : noop}>
           {tag}
         </Label>
       </SplitItem> : ''

@@ -69,6 +69,9 @@ export function useAppList(query:string, tags:string[], categories:string[]) {
     };
 }
 
+/**
+ * Fetch deploy command
+ */
 export function useDeployInstructions(appID : string) {
 
     const [deployInstructions,setDeployInstructions] = useState('Loading...');
@@ -87,6 +90,9 @@ export function useDeployInstructions(appID : string) {
     return deployInstructions;
 }
 
+/**
+ * Fetch current sessionID for chatbot
+ */
 export function useSessionID(){
 
     const [sessionID,setSessionID] = useState('');
