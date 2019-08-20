@@ -15,6 +15,14 @@ interface option {
     callback: string
 }
 
+/**
+ * Interface describing a message in chat log
+ * @param id id for message
+ * @param isUser flag for if message is from user or bot
+ * @param text text if message
+ * @param options list of reply button options 
+ * @param apps list of apps to display
+ */
 interface ChatMessage {
     id : number,
     isUser : boolean,
@@ -23,35 +31,40 @@ interface ChatMessage {
     apps?: ServerlessApp[]
 }
 
+/**
+ * @param onCloseChat function to propogate closing window
+ */
 interface ChatProps {
     onCloseChat : ((e ?: any) => void)
 }
 
 export const ChatBot = (props : ChatProps) => {
 
-    const sessionID = useSessionID();
+    const sessionID = useSessionID(); //generate or fetch a session id for chatbot
 
-    const storedSteps = sessionStorage.getItem('steps');
+    const storedSteps = sessionStorage.getItem('steps'); //fetch any stored chat messages
     const s = storedSteps ? JSON.parse(storedSteps) : [];
 
-    const [steps,setSteps] = useState<ChatMessage[]>(s) //useSteps();
+    const [steps,setSteps] = useState<ChatMessage[]>(s) //initialize messages state
 
-    const scrollToBottom = () => {
+    const scrollToBottom = () => { //function to scroll to bottom of current chat window
         let end = document.getElementById('messagesEnd');
         end? end.scrollIntoView() : noop();
     }
     scrollToBottom();
 
-    const updateStorage = (newSteps : ChatMessage[]) => {
+    //stores current message list in session
+    const updateStorage = (newSteps : ChatMessage[]) => { 
         sessionStorage.setItem('steps',JSON.stringify(newSteps));
     }
 
-   
+    //adds message to list
     const addStep = (text : string, isUser : boolean, options?: option[], apps?: ServerlessApp[]) =>{
 
+        // updates state
         setSteps(steps => {
 
-            updateStorage(steps.concat( 
+            updateStorage(steps.concat( //updates session storage
                 options?
                 {
                     id: steps.length,
@@ -100,6 +113,7 @@ export const ChatBot = (props : ChatProps) => {
         scrollToBottom();
     }
 
+    // prints list of options
     const optionMap = ((option : any) => {
         return ({
             label: option.label,
@@ -107,19 +121,21 @@ export const ChatBot = (props : ChatProps) => {
         })
     });
 
+    //handles sending new user message
     const sendMessage = (text :string) => {
 
-        if(text == ''){
+        if(text == ''){//if nothing sent, no change needed
             return;
         }
 
-        addStep(text,true);        
+        addStep(text,true); //add user message to list       
 
         const body = {
             user : sessionID,
             text : text
         }
 
+        //fetch response from chatbot
         fetch("https://bot.kscout.io/messages",{
             method: 'POST',
             body: JSON.stringify(body),
@@ -133,17 +149,20 @@ export const ChatBot = (props : ChatProps) => {
                     const d = JSON.parse(data);
                     d.options ? addStep(d.title,false,d.options.map(optionMap)) :
                     d.apps? addStep("Apps",false,undefined,d.apps) :
-                    addStep(d.text,false);
+                    addStep(d.text,false); //add response to list
                 }));
     }
 
+    // initial message
     const m = storedSteps ? '' : 'Hi Scout!';
     const [message,setMessage] = useState(m);
 
+    //handles chat message box
     const handleTextChange = (text : any) => {
         setMessage(text);
     }
 
+    //handles chat message submit
     const handleSubmit = (event : any) => {
         event.preventDefault();
         sendMessage(message);
